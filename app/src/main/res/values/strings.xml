@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">DemoForBilibili</string>
+    <string name="user_name">BiliBili</string>
+    
+    <string name="navi_home">主页</string>
+    <string name="navi_cache">离线缓存</string>
+    <string name="navi_collect">我的收藏</string>
+    <string name="navi_history">历史记录</string>
+    <string name="navi_focus">关注的人</string>
+    <string name="navi_money">我的钱包</string>
+    <string name="navi_theme">主题选择</string>
+    <string name="navi_app">应用推荐</string>
+    <string name="navi_set">设置与帮助</string>
+    <string-array name="home_titles">
+        <item>直播</item>
+        <item>推荐</item>
+        <item>番剧</item>
+        <item>分区</item>
+        <item>关注</item>
+        <item>发现</item>
+    </string-array>
 </resources>

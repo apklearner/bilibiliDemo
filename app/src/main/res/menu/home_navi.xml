@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<group android:checkableBehavior="none">
+
+    <item
+        android:id="@+id/menu_home"
+        android:title="@string/navi_home"
+        android:icon="@drawable/ic_launcher"
+        android:checked="true"
+        />
+    <item
+        android:id="@+id/menu_cache"
+        android:title="@string/navi_cache"
+        android:icon="@drawable/ic_launcher"/>
+</group>
+ <group android:id="@+id/group_my"
+     android:checkableBehavior="none"
+     >
+     <item
+         android:id="@+id/menu_collcet"
+         android:title="@string/navi_collect"
+         android:icon="@drawable/ic_launcher"
+         />
+     <item
+         android:id="@+id/menu_history"
+         android:title="@string/navi_history"
+         android:icon="@drawable/ic_launcher"/>
+     <item
+         android:id="@+id/menu_focus"
+         android:title="@string/navi_focus"
+         android:icon="@drawable/ic_launcher"
+         />
+     <item
+         android:id="@+id/menu_money"
+         android:title="@string/navi_money"
+         android:icon="@drawable/ic_launcher"/>
+
+ </group>
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/menu_theme"
+            android:title="@string/navi_theme"
+            android:icon="@drawable/ic_launcher"/>
+
+        <item
+            android:id="@+id/menu_app"
+            android:title="@string/navi_app"
+            android:icon="@drawable/ic_launcher"
+            />
+        <item
+            android:id="@+id/menu_set"
+            android:title="@string/navi_set"
+            android:icon="@drawable/ic_launcher"/>
+
+    </group>
+
+</menu>
