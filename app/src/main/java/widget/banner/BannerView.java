@@ -131,6 +131,7 @@ public class BannerView  extends RelativeLayout implements ViewPager.OnPageChang
                 bannerPager.setCurrentItem(currentPositon += 1);
                 resetIndiactor(currentPositon);
             }
+            handler.sendEmptyMessageDelayed(0,3500);
         }
     };
 
@@ -150,11 +151,11 @@ public class BannerView  extends RelativeLayout implements ViewPager.OnPageChang
         switch (state){
             case ViewPager.SCROLL_STATE_IDLE:
                 isStop = false;
-                handler.sendEmptyMessageDelayed(0,3500);
+//                handler.sendEmptyMessageDelayed(0,3500);
                 break;
             case ViewPager.SCROLL_STATE_DRAGGING:
                 isStop = true;
-                handler.removeCallbacksAndMessages(null);
+//                handler.removeCallbacksAndMessages(null);
                 break;
         }
     }
