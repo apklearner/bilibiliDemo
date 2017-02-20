@@ -1,6 +1,8 @@
 package base;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -49,6 +51,12 @@ public abstract class HomeBaseFragment extends  BaseFramgment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mswipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshData();
+            }
+        });
         initView();
         loadData();
     }
@@ -56,5 +64,22 @@ public abstract class HomeBaseFragment extends  BaseFramgment {
     protected  void loadData(){};
     protected  void initView(){};
 
+    protected  void refreshData(){
+        handler.sendEmptyMessageDelayed(0,2500);
+
+    }
+    protected void refreshComplete(){
+        if(mswipeRefresh.isRefreshing()){
+            mswipeRefresh.setRefreshing(false);
+        }
+    }
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+            refreshComplete();
+        }
+    };
 
 }

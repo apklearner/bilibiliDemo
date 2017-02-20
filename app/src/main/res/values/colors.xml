@@ -5,4 +5,7 @@
     <color name="colorAccent">@android:color/black</color>
     <color name="home_icon_border">#FFFFFF</color>
     <color name="title_w_n">#FFFFFF</color>
+    <color name="live_fore_press">#66aaaaaa</color>
+    <color name="live_button_gray">#666666</color>
+    <color name="live_button_gray_text">#aaaaaa</color>
 </resources>

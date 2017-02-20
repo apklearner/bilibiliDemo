@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
- <android.support.v7.app.AlertController.RecycleListView
+ <android.support.v7.widget.RecyclerView
      android:id="@+id/home_recycle"
      android:layout_width="match_parent"
-     android:layout_height="match_parent"></android.support.v7.app.AlertController.RecycleListView>
+     android:layout_height="match_parent"
+     android:background="#c5c5c6"
+     ></android.support.v7.widget.RecyclerView>
 
 </android.support.v4.widget.SwipeRefreshLayout>

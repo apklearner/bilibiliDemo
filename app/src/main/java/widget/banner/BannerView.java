@@ -82,11 +82,14 @@ public class BannerView  extends RelativeLayout implements ViewPager.OnPageChang
         bannerPager.setOnPageChangeListener(this);
 //        bannerPager.setOffscreenPageLimit(5);
 //        scheduledExecutorService.scheduleAtFixedRate(taskRunnable,3000,3000, TimeUnit.MILLISECONDS);
+        bannerPager.setCurrentItem(currentPositon);
+        handler.removeCallbacksAndMessages(null);
         handler.sendEmptyMessageDelayed(0,10000);
 
     }
 
     private void initDots(){
+        llDots.removeAllViews();
         for(int i =0;i<dataList.size();i++){
             View view = new View(getContext());
             view.setLayoutParams(new LinearLayout.LayoutParams(DensityUtils.Dp2px(getContext(),5),DensityUtils.Dp2px(getContext(),5)));
@@ -138,6 +141,7 @@ public class BannerView  extends RelativeLayout implements ViewPager.OnPageChang
 
     @Override
     public void onPageSelected(int position) {
+        currentPositon = bannerPager.getCurrentItem();
         resetIndiactor(position%dataList.size());
     }
 
