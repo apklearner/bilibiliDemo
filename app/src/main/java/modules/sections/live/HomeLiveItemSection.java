@@ -2,21 +2,16 @@ package modules.sections.live;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import modules.sections.HomeSections;
 import modules.sections.SectionRecyclerAdapter;
 import network.entity.HomeLiveEntity;
+import widget.extra.CommonFootView;
 import widget.extra.CommonHeaderView;
+import widget.extra.SectionLiveItemView;
 
 /**
  * Created by ly on 2017/2/21.
@@ -27,7 +22,7 @@ public class HomeLiveItemSection extends HomeSections{
     private HomeLiveEntity.DataBean.PartitionsBean data;
 
     public HomeLiveItemSection(HomeLiveEntity.DataBean.PartitionsBean data){
-        super(R.layout.section_live_item,R.layout.section_header_common,R.layout.section_live_item_foot);
+        super(R.layout.section_live_item_view,R.layout.section_header_common,R.layout.section_common_foot);
         this.data = data;
     }
 
@@ -71,23 +66,29 @@ public class HomeLiveItemSection extends HomeSections{
     @Override
     protected void onBindItemView(RecyclerView.ViewHolder viewHolder, int position) {
         ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
-        Glide.with(itemViewHolder.cover.getContext())
-                .load(data.getLives().get(position -1).getCover().getSrc())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.ic_launcher)
-                .dontAnimate()
-                .into(itemViewHolder.cover);
-
-        Glide.with(itemViewHolder.cover.getContext())
-                .load(data.getLives().get(position -1).getOwner().getFace())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .bitmapTransform(new CropCircleTransformation(itemViewHolder.cover.getContext()))
-                .dontAnimate()
-                .into(itemViewHolder.icon);
-
-        itemViewHolder.online.setText(data.getLives().get(position -1 ).getOnline()+"");
-        itemViewHolder.title.setText(data.getLives().get(position -1 ).getTitle());
-
+//        Glide.with(itemViewHolder.cover.getContext())
+//                .load(data.getLives().get(position -1).getCover().getSrc())
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .placeholder(R.drawable.ic_launcher)
+//                .dontAnimate()
+//                .into(itemViewHolder.cover);
+//
+//        Glide.with(itemViewHolder.cover.getContext())
+//                .load(data.getLives().get(position -1).getOwner().getFace())
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .bitmapTransform(new CropCircleTransformation(itemViewHolder.cover.getContext()))
+//                .dontAnimate()
+//                .into(itemViewHolder.icon);
+//
+//        itemViewHolder.online.setText(data.getLives().get(position -1 ).getOnline()+"");
+//        itemViewHolder.title.setText(data.getLives().get(position -1 ).getTitle());
+//        itemViewHolder.name.setText(data.getLives().get(position-1).getOwner().getName());
+        itemViewHolder.sectionLive.build(data.getLives().get(position-1).getCover().getSrc(),
+                data.getLives().get(position-1).getOwner().getFace(),
+                data.getLives().get(position-1).getOwner().getName(),
+                data.getLives().get(position-1).getTitle(),
+                data.getLives().get(position-1).getOnline()+""
+                );
 
     }
 
@@ -135,14 +136,8 @@ public class HomeLiveItemSection extends HomeSections{
 
     class ItemViewHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.iv_live_item_bg)
-        RoundedImageView cover;
-        @BindView(R.id.iv_live_item_icon)
-        ImageView icon;
-        @BindView(R.id.tv_live_item_online)
-        TextView online;
-        @BindView(R.id.tv_live_item_title)
-        TextView title;
+       @BindView(R.id.section_live)
+        SectionLiveItemView sectionLive;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -151,12 +146,8 @@ public class HomeLiveItemSection extends HomeSections{
     }
 
     class FootViewHolder extends  RecyclerView.ViewHolder{
-        @BindView(R.id.iv_live_item_foot_more)
-        ImageView refresh;
-        @BindView(R.id.tv_live_item_foot_active)
-        TextView active;
-        @BindView(R.id.tv_live_item_foot_more)
-        TextView btnMore;
+      @BindView(R.id.commonfooot)
+      CommonFootView footView;
 
         public FootViewHolder(View itemView) {
             super(itemView);

@@ -31,6 +31,8 @@ public class CommonHeaderView extends RelativeLayout{
     TextView enter;
     @BindView(R.id.tv_bangumi_head_right)
     TextView bangumiNum;
+    @BindView(R.id.tv_order)
+    TextView order;
 
     public CommonHeaderView(Context context) {
         this(context,null);
@@ -73,6 +75,14 @@ public class CommonHeaderView extends RelativeLayout{
         numberLive.setVisibility(View.GONE);
     }
 
+    public void onOrder(){
+        bangumiNum.setVisibility(View.GONE);
+        enter.setVisibility(View.GONE);
+        numberLive.setVisibility(View.GONE);
+        order.setVisibility(View.VISIBLE);
+    }
+
+
     public void loadIconAndTitle(String src,String content,int width,int height){
         Glide.with(getContext())
                 .load(src)
@@ -85,6 +95,11 @@ public class CommonHeaderView extends RelativeLayout{
 
     public void loadIconAndTitle(String src,String content){
         loadIconAndTitle(src,content,60,60);
+    }
+
+
+    public void loadOnlyTitle(String content){
+        loadIconAndTitle(R.drawable.ic_launcher,content);
     }
 
 

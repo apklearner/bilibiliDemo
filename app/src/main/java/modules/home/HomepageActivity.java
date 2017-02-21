@@ -68,12 +68,29 @@ public class HomepageActivity extends BaseActivity implements NavigationView.OnN
     private void initTabs(){
         for(int i =0;i<titles.length;i++){
             tabLayout.addTab(tabLayout.newTab().setText(titles[0]));
-            if(i == 2){
-                fralist.add(HomeBangumiFragment.newInstance());
-            }else {
-                fralist.add(HomeLiveFragment.newInstance());
-
+//            if(i == 2){
+//                fralist.add(HomeBangumiFragment.newInstance());
+//            }else {
+//                fralist.add(HomeLiveFragment.newInstance());
+//
+//            }
+            switch (i){
+                case 0:
+                    fralist.add(HomeLiveFragment.newInstance());
+                    break;
+                case 1:
+                    fralist.add(HomeRecommandFragment.newInstance());
+                    break;
+                case 2:
+                    fralist.add(HomeBangumiFragment.newInstance());
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    fralist.add(HomeBangumiFragment.newInstance());
+                    break;
             }
+
         }
         viewPager.setOffscreenPageLimit(5);
         viewPager.setAdapter(new HomePageAdapter(getSupportFragmentManager()));

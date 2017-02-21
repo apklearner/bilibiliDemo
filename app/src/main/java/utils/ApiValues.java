@@ -10,5 +10,7 @@ public interface ApiValues {
 
     String BANGUMI_BASE_URL = "http://bangumi.bilibili.com/";
 
+    String APP_BASE_URL ="http://app.bilibili.com/";
+
 
 }

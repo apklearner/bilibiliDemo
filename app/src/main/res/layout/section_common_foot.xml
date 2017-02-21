@@ -3,14 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-    <widget.extra.CommonHeaderView
-        android:id="@+id/commonheader"
+    <widget.extra.CommonFootView
+        android:id="@+id/commonfooot"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-
-
-    </widget.extra.CommonHeaderView>
-
+        android:layout_height="wrap_content"></widget.extra.CommonFootView>
 </RelativeLayout>

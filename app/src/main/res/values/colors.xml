@@ -9,4 +9,5 @@
     <color name="live_button_gray">#666666</color>
     <color name="live_button_gray_text">#aaaaaa</color>
     <color name="bangumi_transparent_gray">#cc666666</color>
+    <color name="order_orange">#ffaa00</color>
 </resources>

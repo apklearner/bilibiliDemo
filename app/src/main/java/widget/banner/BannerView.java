@@ -61,17 +61,24 @@ public class BannerView  extends RelativeLayout implements ViewPager.OnPageChang
         imageList.clear();
         this.dataList = dataList;
         if(dataList == null || dataList.size() ==0) return;
-        for(int i= 0 ;i< dataList.size();i++){
-            ImageView imageView = new ImageView(getContext());
-//            imageView.setLayoutParams(new MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            Glide.with(getContext())
-                    .load(dataList.get(i).getImgUrl())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.ic_launcher)
-                    .centerCrop()
-                    .dontAnimate()
-                    .into(imageView);
+//        int tempCount = dataList.size() ==2?4:dataList.size();
+        for(int i= 0 ;i< dataList.size() ;i++){
+//            ImageView imageView = new ImageView(getContext());
+////            imageView.setLayoutParams(new MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//            Glide.with(getContext())
+//                    .load(dataList.get(i).getImgUrl())
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .placeholder(R.drawable.ic_launcher)
+//                    .centerCrop()
+//                    .dontAnimate()
+//                    .into(imageView);
+            ImageView imageView = createImageView(dataList.get(i).getImgUrl());
             imageList.add(imageView);
+        }
+
+        if(dataList.size() == 2){
+            imageList.add(createImageView(dataList.get(0).getImgUrl()));
+            imageList.add(createImageView(dataList.get(1).getImgUrl()));
         }
 
         initDots();
@@ -110,6 +117,19 @@ public class BannerView  extends RelativeLayout implements ViewPager.OnPageChang
         }
         llDots.getChildAt(position%dataList.size()).setSelected(true);
 
+    }
+
+    private ImageView createImageView(String imgUrl){
+        ImageView imageView = new ImageView(getContext());
+//            imageView.setLayoutParams(new MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        Glide.with(getContext())
+                .load(imgUrl)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.ic_launcher)
+                .centerCrop()
+                .dontAnimate()
+                .into(imageView);
+        return imageView;
     }
 
 
