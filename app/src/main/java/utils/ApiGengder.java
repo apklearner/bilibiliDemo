@@ -1,5 +1,6 @@
 package utils;
 
+import network.BangumiService;
 import network.LiveService;
 
 /**
@@ -10,6 +11,11 @@ public class ApiGengder {
 
     public static LiveService getLiveService(){
         return ApiHelper.createApi(LiveService.class,ApiValues.LIVE_BASE_URL);
+    }
+
+    public static BangumiService getBangumiService(){
+        return ApiHelper.createApi(BangumiService.class,ApiValues.BANGUMI_BASE_URL);
+
     }
 
 

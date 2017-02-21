@@ -126,6 +126,7 @@ public class BannerView  extends RelativeLayout implements ViewPager.OnPageChang
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            handler.removeCallbacksAndMessages(null);
             if(!isStop) {
                 currentPositon = bannerPager.getCurrentItem();
                 bannerPager.setCurrentItem(currentPositon += 1);

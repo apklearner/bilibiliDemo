@@ -10,7 +10,7 @@ import rx.Observable;
 
 public interface LiveService {
 
-    @GET("AppIndex/home?_device=android&_hwid=51e96f5f2f54d5f9&_ulv=10000&access_key=563d6046f06289cbdcb472601ce5a761&appkey=c1b107428d337928&build=410000&platform=android&scale=xxhdpi&sign=fbdcfe141853f7e2c84c4d401f6a8758")
+    @GET("AppIndex/home?_device=android&_hwid=9b79e5045a78136c&_ulv=10000&access_key=d8b9703d7aa9d7127ed5b408bc92cea7&appkey=c1b107428d337928&build=419000&mobi_app=android&platform=android&scale=xhdpi&sign=361f7bcfcf92c9ed66ee15e4b202dba3")
     Observable<HomeLiveEntity> getHomeLiveInfo();
 
 }

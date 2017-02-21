@@ -16,6 +16,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import modules.sections.HomeSections;
 import modules.sections.SectionRecyclerAdapter;
 import network.entity.HomeLiveEntity;
+import widget.extra.CommonHeaderView;
 
 /**
  * Created by ly on 2017/2/21.
@@ -26,7 +27,7 @@ public class HomeLiveItemSection extends HomeSections{
     private HomeLiveEntity.DataBean.PartitionsBean data;
 
     public HomeLiveItemSection(HomeLiveEntity.DataBean.PartitionsBean data){
-        super(R.layout.section_live_item,R.layout.section_live_item_head,R.layout.section_live_item_foot);
+        super(R.layout.section_live_item,R.layout.section_header_common,R.layout.section_live_item_foot);
         this.data = data;
     }
 
@@ -53,14 +54,17 @@ public class HomeLiveItemSection extends HomeSections{
       HeadViewHoloder headViewHoloder = (HeadViewHoloder) viewHolder;
         int width = Integer.valueOf(data.getPartition().getSub_icon().getWidth());
         int height = Integer.valueOf(data.getPartition().getSub_icon().getHeight());
-        Glide.with(headViewHoloder.icon.getContext())
-                .load(data.getPartition().getSub_icon().getSrc())
-                .skipMemoryCache(true)
-                .override(width,height)
-                .dontAnimate()
-                .into(headViewHoloder.icon);
-        headViewHoloder.title.setText(data.getPartition().getName());
-        headViewHoloder.num.setText("更多"+data.getPartition().getCount()+"个直播");
+//        Glide.with(headViewHoloder.icon.getContext())
+//                .load(data.getPartition().getSub_icon().getSrc())
+//                .skipMemoryCache(true)
+//                .override(width,height)
+//                .dontAnimate()
+//                .into(headViewHoloder.icon);
+//        headViewHoloder.title.setText(data.getPartition().getName());
+//        headViewHoloder.num.setText("更多"+data.getPartition().getCount()+"个直播");
+        headViewHoloder.commonHeaderView.loadIconAndTitle(data.getPartition().getSub_icon().getSrc(),data.getPartition().getName(),
+                width,height);
+        headViewHoloder.commonHeaderView.setLiveNum("更多"+data.getPartition().getCount()+"个直播");
 
     }
 
@@ -117,18 +121,15 @@ public class HomeLiveItemSection extends HomeSections{
     }
 
     class HeadViewHoloder extends RecyclerView.ViewHolder{
-        @BindView(R.id.iv_live_item_head_icon)
-        ImageView icon;
-        @BindView(R.id.tv_live_item_head_title)
-        TextView title;
-        @BindView(R.id.tv_live_item_head_num)
-        TextView num;
-        @BindView(R.id.tv_live_item_head_enter)
-        TextView enter;
+
+        @BindView(R.id.commonheader)
+        CommonHeaderView commonHeaderView;
 
         public HeadViewHoloder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            commonHeaderView.onLive();
+//            commonHeaderView.loadIconAndTitle(R.drawable.ic_launcher,"新番连载");
         }
     }
 

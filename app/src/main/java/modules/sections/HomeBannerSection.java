@@ -1,4 +1,4 @@
-package modules.sections.live;
+package modules.sections;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,8 +9,6 @@ import java.util.List;
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import modules.sections.HomeSections;
-import modules.sections.SectionRecyclerAdapter;
 import widget.banner.BannerEntity;
 import widget.banner.BannerView;
 
@@ -18,11 +16,11 @@ import widget.banner.BannerView;
  * Created by ly on 2017/2/20.
  */
 
-public class HomeLiveBannerSection extends HomeSections {
+public class HomeBannerSection extends HomeSections {
 
     private List<BannerEntity> datalist = new ArrayList<>();
 
-    public HomeLiveBannerSection(List<BannerEntity> datalist){
+    public HomeBannerSection(List<BannerEntity> datalist){
         super(R.layout.section_live_banner);
         this.datalist = datalist;
     }

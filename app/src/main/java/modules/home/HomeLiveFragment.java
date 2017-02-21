@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base.HomeBaseFragment;
-import modules.sections.live.HomeLiveBannerSection;
+import modules.sections.HomeBannerSection;
 import modules.sections.live.HomeLiveCenterSection;
 import modules.sections.live.HomeLiveFooter;
 import modules.sections.live.HomeLiveItemSection;
@@ -19,7 +19,7 @@ import rx.schedulers.Schedulers;
 import utils.ApiGengder;
 import utils.DensityUtils;
 import widget.banner.BannerEntity;
-import widget.extra.LiveItemDecoration;
+import widget.decoration.LiveItemDecoration;
 
 /**
  * Created by ly on 2017/2/18.
@@ -100,7 +100,7 @@ public class HomeLiveFragment extends HomeBaseFragment {
         for(int i =0;i<bannerBeen.size();i++){
             bannerList.add(new BannerEntity(bannerBeen.get(i).getImg()));
         }
-        adapter.addSections(new HomeLiveBannerSection(bannerList));
+        adapter.addSections(new HomeBannerSection(bannerList));
 
 
 //        bannerView.buildBanner(bannerList);

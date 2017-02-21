@@ -8,6 +8,7 @@ public interface ApiValues {
 
     String LIVE_BASE_URL = "http://live.bilibili.com/";
 
+    String BANGUMI_BASE_URL = "http://bangumi.bilibili.com/";
 
 
 }
