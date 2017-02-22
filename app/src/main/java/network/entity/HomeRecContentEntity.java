@@ -81,6 +81,15 @@ public class HomeRecContentEntity {
             private String gotoX;
             private String style;
             private String title;
+            private int count;
+
+            public int getCount() {
+                return count;
+            }
+
+            public void setCount(int count) {
+                this.count = count;
+            }
 
             public String getParam() {
                 return param;
@@ -138,6 +147,43 @@ public class HomeRecContentEntity {
             private int height;
             private String play;
             private String danmaku;
+            private String up;
+            private String up_face;
+            private int online;
+            private String desc1;
+
+
+            public String getDesc1() {
+                return desc1;
+            }
+
+            public void setDesc1(String desc1) {
+                this.desc1 = desc1;
+            }
+
+            public String getUp() {
+                return up;
+            }
+
+            public void setUp(String up) {
+                this.up = up;
+            }
+
+            public String getUp_face() {
+                return up_face;
+            }
+
+            public void setUp_face(String up_face) {
+                this.up_face = up_face;
+            }
+
+            public int getOnline() {
+                return online;
+            }
+
+            public void setOnline(int online) {
+                this.online = online;
+            }
 
             public String getTitle() {
                 return title;

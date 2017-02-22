@@ -56,12 +56,14 @@ public class SectionLiveItemView extends RelativeLayout {
                 .load(cover)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.ic_launcher)
+                .centerCrop()
                 .dontAnimate()
                 .into(this.cover);
         Glide.with(getContext())
                 .load(icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .bitmapTransform(new CropCircleTransformation(getContext()))
+                .centerCrop()
                 .dontAnimate()
                 .into(this.icon);
 
@@ -70,6 +72,7 @@ public class SectionLiveItemView extends RelativeLayout {
         this.online.setText(online);
 
     }
+
 
 
 }

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
@@ -87,7 +88,7 @@ public class CommonHeaderView extends RelativeLayout{
         Glide.with(getContext())
                 .load(src)
                 .override(width,height)
-                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .dontAnimate()
                 .into(icon);
         title.setText(content);
@@ -107,7 +108,7 @@ public class CommonHeaderView extends RelativeLayout{
         Glide.with(getContext())
                 .load(src)
                 .override(width,height)
-                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .dontAnimate()
                 .into(icon);
         title.setText(content);
@@ -134,6 +135,10 @@ public class CommonHeaderView extends RelativeLayout{
     public void setOnBangumiClick(OnClickListener l){
         bangumiNum.setVisibility(View.VISIBLE);
         bangumiNum.setOnClickListener(l);
+    }
+
+    public void setRightBtnText(String content){
+        enter.setText(content);
     }
 
 }

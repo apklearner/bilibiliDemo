@@ -1,7 +1,6 @@
 package modules.sections;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -20,7 +19,7 @@ public class SectionRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public final static int VIEW_TYPE_ITEM_3 = 4; //占1/3
     public final static int VIEW_TYPE_ITEM_4 = 5; //占1/4
 
-    private final int VIEW_TYPE_COUNT = 10;
+    private final int VIEW_TYPE_COUNT = 6;
 
     private int sectionStart = 0;
 
@@ -61,9 +60,11 @@ public class SectionRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         throw new RuntimeException("section adapter create holder error");
     }
 
+    private long currentMills1= 0;
+    private long currentMills2= 0;
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.i("123",position +"   "+getPositionInSections(position) +"    "+getItemViewType(position));
+
             HomeSections sections = getSectionFormPos(position);
         switch (getItemViewType(position)%VIEW_TYPE_COUNT){
             case VIEW_TYPE_HEADER:
@@ -79,6 +80,8 @@ public class SectionRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                  sections.onBindItemView(holder,getPositionInSections(position));
                 break;
         }
+
+
     }
 
 

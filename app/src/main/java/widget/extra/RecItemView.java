@@ -52,9 +52,10 @@ public class RecItemView extends RelativeLayout {
     public void build(String cover,String title,String  playCount,String danmCount){
         Glide.with(getContext())
                 .load(cover)
-                .placeholder(R.drawable.ic_launcher)
-                .dontAnimate()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.ic_launcher)
+                .centerCrop()
+                .dontAnimate()
                 .into(this.cover);
         this.title.setText(title);
         this.playCount.setText(playCount);

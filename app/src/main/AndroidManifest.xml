@@ -19,7 +19,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/TransparentStatus" >
+        android:theme="@style/TransparentStatus"
+        android:hardwareAccelerated="true"
+        >
         <activity android:name="modules.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

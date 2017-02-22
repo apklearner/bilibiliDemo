@@ -8,7 +8,10 @@ import java.util.List;
 import base.HomeBaseFragment;
 import modules.sections.HomeBannerSection;
 import modules.sections.SectionRecyclerAdapter;
+import modules.sections.bangumi.HomeBangumiUpdateSection;
+import modules.sections.live.HomeLiveItemSection;
 import modules.sections.recommand.RecHotSection;
+import modules.sections.recommand.RecTopicSection;
 import network.entity.HomeRecBannerEntity;
 import network.entity.HomeRecContentEntity;
 import rx.android.schedulers.AndroidSchedulers;
@@ -102,7 +105,8 @@ public class HomeRecommandFragment  extends HomeBaseFragment{
                         loadContentData(homeRecContentEntity);
                         adapter.notifyDataSetChanged();
                     }
-                }, new Action1<Throwable>() {
+                },
+                        new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         refreshComplete();
@@ -115,6 +119,12 @@ public class HomeRecommandFragment  extends HomeBaseFragment{
         for(HomeRecContentEntity.ResultBean bean : homeRecContentEntity.getResult()){
             if(bean.getType().equals("recommend") || bean.getType().equals("region")){
                 adapter.addSections(new RecHotSection(bean));
+            }else if(bean.getType().equals("live")){
+                adapter.addSections(new HomeLiveItemSection(bean));
+            }else if(bean.getType().equals("bangumi_2")){
+                adapter.addSections(new HomeBangumiUpdateSection(bean));
+            }else if(bean.getType().equals("weblink")){
+                adapter.addSections(new RecTopicSection(bean));
             }
         }
 

@@ -9,6 +9,7 @@ import butterknife.ButterKnife;
 import modules.sections.HomeSections;
 import modules.sections.SectionRecyclerAdapter;
 import network.entity.HomeLiveEntity;
+import network.entity.HomeRecContentEntity;
 import widget.extra.CommonFootView;
 import widget.extra.CommonHeaderView;
 import widget.extra.SectionLiveItemView;
@@ -20,10 +21,18 @@ import widget.extra.SectionLiveItemView;
 public class HomeLiveItemSection extends HomeSections{
 
     private HomeLiveEntity.DataBean.PartitionsBean data;
+    private HomeRecContentEntity.ResultBean resultBean;
+    private boolean isrecommand;
 
     public HomeLiveItemSection(HomeLiveEntity.DataBean.PartitionsBean data){
         super(R.layout.section_live_item_view,R.layout.section_header_common,R.layout.section_common_foot);
         this.data = data;
+    }
+
+    public HomeLiveItemSection(HomeRecContentEntity.ResultBean resultBean){
+        super(R.layout.section_live_item_view,R.layout.section_header_common,R.layout.section_common_foot);
+        this.resultBean = resultBean;
+        isrecommand = true;
     }
 
     @Override
@@ -47,16 +56,14 @@ public class HomeLiveItemSection extends HomeSections{
     @Override
     protected void onBindHeaderView(RecyclerView.ViewHolder viewHolder, int position) {
       HeadViewHoloder headViewHoloder = (HeadViewHoloder) viewHolder;
+       if(isrecommand){
+          headViewHoloder.commonHeaderView.loadOnlyTitle(resultBean.getHead().getTitle());
+           headViewHoloder.commonHeaderView.setLiveNum("更多"+resultBean.getHead().getCount()+"个直播");
+          return;
+       }
+
         int width = Integer.valueOf(data.getPartition().getSub_icon().getWidth());
         int height = Integer.valueOf(data.getPartition().getSub_icon().getHeight());
-//        Glide.with(headViewHoloder.icon.getContext())
-//                .load(data.getPartition().getSub_icon().getSrc())
-//                .skipMemoryCache(true)
-//                .override(width,height)
-//                .dontAnimate()
-//                .into(headViewHoloder.icon);
-//        headViewHoloder.title.setText(data.getPartition().getName());
-//        headViewHoloder.num.setText("更多"+data.getPartition().getCount()+"个直播");
         headViewHoloder.commonHeaderView.loadIconAndTitle(data.getPartition().getSub_icon().getSrc(),data.getPartition().getName(),
                 width,height);
         headViewHoloder.commonHeaderView.setLiveNum("更多"+data.getPartition().getCount()+"个直播");
@@ -83,6 +90,18 @@ public class HomeLiveItemSection extends HomeSections{
 //        itemViewHolder.online.setText(data.getLives().get(position -1 ).getOnline()+"");
 //        itemViewHolder.title.setText(data.getLives().get(position -1 ).getTitle());
 //        itemViewHolder.name.setText(data.getLives().get(position-1).getOwner().getName());
+
+        if(isrecommand){
+            itemViewHolder.sectionLive.build(resultBean.getBody().get(position-1).getCover(),
+                    resultBean.getBody().get(position-1).getUp_face(),
+                    resultBean.getBody().get(position-1).getUp(),
+                    resultBean.getBody().get(position-1).getTitle(),
+                    resultBean.getBody().get(position-1).getOnline()+"");
+
+            return;
+        }
+
+
         itemViewHolder.sectionLive.build(data.getLives().get(position-1).getCover().getSrc(),
                 data.getLives().get(position-1).getOwner().getFace(),
                 data.getLives().get(position-1).getOwner().getName(),
