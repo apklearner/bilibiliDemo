@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       >
+       <ImageView
+           android:id="@+id/iv_video_relate"
+           android:layout_width="120dp"
+           android:layout_height="80dp"
+           android:scaleType="centerCrop"
+           android:layout_marginRight="10dp"
+           />
+
+       <TextView
+           android:id="@+id/tv_video_relate_title"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:singleLine="true"
+           android:ellipsize="end"
+           android:layout_toRightOf="@+id/iv_video_relate"
+           android:text="1111111"
+           android:textColor="@color/colorAccent"
+           android:textSize="15sp"
+           />
+       <TextView
+           android:id="@+id/tv_video_relate_up_name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toRightOf="@+id/iv_video_relate"
+           android:layout_below="@+id/tv_video_relate_title"
+           android:text="111"
+           android:layout_marginTop="10dp"
+           android:drawableStart="@drawable/icon_up"
+           android:drawablePadding="5dp"
+           android:textSize="12sp"
+           />
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_toRightOf="@+id/iv_video_relate"
+         android:layout_below="@+id/tv_video_relate_up_name"
+         android:layout_alignBottom="@+id/iv_video_relate"
+         android:gravity="bottom|left"
+         android:layout_marginLeft="-5dp"
+         >
+         <TextView
+             android:id="@+id/tv_video_relate_play_count"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:drawableStart="@drawable/ic_clip_view_num"
+             android:drawablePadding="5dp"
+             android:text="11111"
+             android:gravity="center_vertical"
+             android:textSize="13sp"
+             />
+
+         <TextView
+             android:id="@+id/tv_video_relate_danm_count"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:drawableStart="@drawable/ic_clip_danmaku_num"
+             android:drawablePadding="5dp"
+             android:text="11111"
+             android:gravity="center_vertical"
+             android:textSize="13sp"
+             />
+
+     </LinearLayout>
+
+
+   </RelativeLayout>
+
+
+</LinearLayout>

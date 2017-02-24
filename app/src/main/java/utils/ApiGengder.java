@@ -5,6 +5,7 @@ import network.HotTagService;
 import network.LiveService;
 import network.RecommandService;
 import network.VideDetailService;
+import network.VideoCommentService;
 
 /**
  * Created by ly on 2017/2/19.
@@ -34,5 +35,9 @@ public class ApiGengder {
         return ApiHelper.createApi(VideDetailService.class,ApiValues.APP_BASE_URL);
     }
 
+
+    public static VideoCommentService getVideoCommentService(){
+        return ApiHelper.createApi(VideoCommentService.class,ApiValues.API_BASE_URL);
+    }
 
 }

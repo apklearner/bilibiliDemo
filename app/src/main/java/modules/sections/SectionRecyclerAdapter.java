@@ -60,8 +60,12 @@ public class SectionRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         throw new RuntimeException("section adapter create holder error");
     }
 
-    private long currentMills1= 0;
-    private long currentMills2= 0;
+    /**
+     *
+     * @param holder
+     * @param position 这里返回的子bindView的position是子section中位置 弱国包含header 和 footer
+     *                  则header是0 footer是最后一个
+     */
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
@@ -85,12 +89,21 @@ public class SectionRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
 
-
+    /**
+     *  sectionType 是求余之后的 为 0-viewTypeCount-1
+     * @param position
+     * @return
+     */
     public  int getSpanViewType(int position){
         return getItemViewType(position)%VIEW_TYPE_COUNT;
     }
 
 
+    /**
+     * 类型 每添加一个section seciontNum +1
+     * 每个seciont起始为  sectionNum * sectionTypeCount
+     * 为了方便根据viewtype计算出是第几个section
+     */
     @Override
     public int getItemViewType(int position) {
 
@@ -128,6 +141,11 @@ public class SectionRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     }
 
+    /**
+     *  根据positiom获取当前所在的sectino
+     * @param position
+     * @return
+     */
     private HomeSections getSectionFormPos(int position) {
         int currentCount = 0;
         for (HomeSections msection : sectionList) {

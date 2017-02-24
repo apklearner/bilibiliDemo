@@ -1,5 +1,6 @@
 package base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,12 @@ public abstract  class BaseFramgment extends Fragment {
 
     private Unbinder unbinder;
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        getmArguments();
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -39,4 +46,5 @@ public abstract  class BaseFramgment extends Fragment {
 
     protected  void loadData(){};
     protected  void initView(){};
+    protected  void getmArguments(){};
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <widget.extra.VideoReplyView
+        android:id="@+id/videoReply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></widget.extra.VideoReplyView>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/live_button_gray_text"/>
+
+    <LinearLayout
+        android:id="@+id/ll_video_reply_hot_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:background="@color/main_bg"
+        android:visibility="gone"
+        >
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/live_button_gray_text"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="更多热门评论>>"
+          android:layout_marginLeft="15dp"
+          android:layout_marginRight="15dp"
+          android:textSize="13sp"
+          android:textColor="@color/colorPrimary"
+          />
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/live_button_gray_text"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+</LinearLayout>

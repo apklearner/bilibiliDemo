@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/main_bg"
-    android:overScrollMode="never"
     >
 
     <LinearLayout
@@ -24,38 +23,38 @@
             android:ellipsize="end"
             android:text="1111111111"
             />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
-    >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            >
 
-    <TextView
-        android:id="@+id/tv_video_abstract_play_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sss"
-        android:drawableLeft="@drawable/ic_clip_view_num"
+            <TextView
+                android:id="@+id/tv_video_abstract_play_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sss"
+                android:drawableLeft="@drawable/ic_clip_view_num"
 
-        android:gravity="center_vertical"/>
-
-
-    <TextView
-        android:id="@+id/tv_video_abstract_danm_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ss"
-        android:drawableLeft="@drawable/ic_clip_danmaku_num"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        />
+                android:gravity="center_vertical"/>
 
 
+            <TextView
+                android:id="@+id/tv_video_abstract_danm_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ss"
+                android:drawableLeft="@drawable/ic_clip_danmaku_num"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
 
-</LinearLayout>
+
+
+        </LinearLayout>
         <TextView
             android:id="@+id/tv_video_abstract_content"
             android:layout_marginLeft="10dp"
@@ -75,7 +74,7 @@
             android:layout_marginTop="10dp"
             >
 
-<!-- 分享  -->
+            <!-- 分享  -->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -117,7 +116,7 @@
 
             </LinearLayout>
 
-   <!-- 投硬币 -->
+            <!-- 投硬币 -->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -158,7 +157,7 @@
                     />
 
             </LinearLayout>
-<!-- 收藏 -->
+            <!-- 收藏 -->
 
 
             <LinearLayout
@@ -201,7 +200,7 @@
 
             </LinearLayout>
 
-<!--  缓存  -->
+            <!--  缓存  -->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -241,87 +240,87 @@
 
             </LinearLayout>
         </LinearLayout>
-<View
-    android:layout_width="match_parent"
-    android:layout_height="1px"
-    android:background="@color/dis_line"
-    android:layout_marginTop="10dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/dis_line"
+            android:layout_marginTop="10dp"/>
 
-     <RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:paddingTop="10dp"
-         android:paddingBottom="10dp"
-         android:layout_marginLeft="10dp"
-         >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="10dp"
+            >
 
-<ImageView
-    android:id="@+id/iv_video_abstract_up_icon"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:scaleType="centerCrop"
-    />
+            <ImageView
+                android:id="@+id/iv_video_abstract_up_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                />
 
-     <TextView
-         android:id="@+id/tv_video_abstract_up_name"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_toRightOf="@+id/iv_video_abstract_up_icon"
-         android:layout_alignTop="@+id/iv_video_abstract_up_icon"
-         android:textColor="@color/colorAccent"
-         android:textSize="12sp"
-         android:layout_marginLeft="10dp"
-         />
+            <TextView
+                android:id="@+id/tv_video_abstract_up_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_video_abstract_up_icon"
+                android:layout_alignTop="@+id/iv_video_abstract_up_icon"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:layout_marginLeft="10dp"
+                />
 
-         <TextView
-             android:id="@+id/tv_video_abstract_up_time"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_toRightOf="@+id/iv_video_abstract_up_icon"
-             android:layout_alignBottom="@+id/iv_video_abstract_up_icon"
-             android:textColor="@color/live_button_gray"
-             android:textSize="10sp"
-             android:layout_marginLeft="10dp"
-             />
+            <TextView
+                android:id="@+id/tv_video_abstract_up_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_video_abstract_up_icon"
+                android:layout_alignBottom="@+id/iv_video_abstract_up_icon"
+                android:textColor="@color/live_button_gray"
+                android:textSize="10sp"
+                android:layout_marginLeft="10dp"
+                />
 
-         <TextView
-             android:id="@+id/tv_video_abstract_focus"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerVertical="true"
-             android:layout_alignParentRight="true"
-             android:layout_marginRight="10dp"
-             android:text="+关注"
-             android:background="@drawable/shape_rect_strock_radius_pink"
-             android:textSize="13sp"
-             android:paddingTop="4dp"
-             android:paddingBottom="4dp"
-             android:paddingLeft="8dp"
-             android:paddingRight="8dp"
-             android:textColor="@color/colorPrimary"
-             />
+            <TextView
+                android:id="@+id/tv_video_abstract_focus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="+关注"
+                android:background="@drawable/shape_rect_strock_radius_pink"
+                android:textSize="13sp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/colorPrimary"
+                />
 
-     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/dis_line"
-        />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/dis_line"
+            />
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginLeft="10dp"
-           android:text="视频相关"
-           android:textSize="13sp"
-           android:layout_marginTop="10dp"
-           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="视频相关"
+            android:textSize="13sp"
+            android:layout_marginTop="10dp"
+            />
 
         <com.zhy.view.flowlayout.TagFlowLayout
             android:id="@+id/tags_video_abstract"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -332,4 +331,4 @@
     </LinearLayout>
 
 
-</android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

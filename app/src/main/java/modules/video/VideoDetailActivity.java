@@ -66,7 +66,7 @@ public class VideoDetailActivity extends BaseActivity {
         avText.setText("av"+avNum);
 
         fralist.add(AbstractFragment.newInstance());
-        fralist.add(AbstractFragment.newInstance());
+        fralist.add(ComentFragment.newInstance(avNum));
 
         tabLayout.addTab(tabLayout.newTab().setText(titles[0]));
         tabLayout.addTab(tabLayout.newTab().setText(titles[1]));
@@ -108,8 +108,7 @@ public class VideoDetailActivity extends BaseActivity {
                     public void call(VideoDetailEntity videoDetailEntity) {
                         GlideUtils.loadImg(VideoDetailActivity.this, videoDetailEntity.getData().getPic(), cover);
                         ((AbstractFragment)fralist.get(0)).setData(videoDetailEntity);
-
-
+//                        ((ComentFragment)fralist.get(1)).setData(videoDetailEntity.getData().getAid()+"");
                     }
                 }, new Action1<Throwable>() {
                     @Override
