@@ -6,9 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import java.util.List;
 
 import bilibili.demoforbilibili.R;
@@ -17,6 +14,7 @@ import butterknife.ButterKnife;
 import modules.sections.HomeSections;
 import modules.sections.SectionRecyclerAdapter;
 import network.entity.HomeBangumiMainEntity;
+import utils.GlideUtils;
 import widget.extra.CommonHeaderView;
 
 /**
@@ -55,12 +53,13 @@ public class HomeBangumiCompleteSection extends HomeSections {
     protected void onBindItemView(RecyclerView.ViewHolder viewHolder, int position) {
 //        super.onBindItemView(viewHolder, position);
         ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
-        Glide.with(context)
-                .load(datalist.get(position -1).getCover())
-                .placeholder(R.drawable.ic_launcher)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
-                .into(itemViewHolder.cover);
+//        Glide.with(context)
+//                .load(datalist.get(position -1).getCover())
+//                .placeholder(R.drawable.ic_launcher)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .dontAnimate()
+//                .into(itemViewHolder.cover);
+        GlideUtils.loadImg(context,datalist.get(position -1).getCover(),itemViewHolder.cover);
         itemViewHolder.title.setText(datalist.get(position-1).getTitle());
         itemViewHolder.total.setText(datalist.get(position-1).getTotal_count()+"话全");
 

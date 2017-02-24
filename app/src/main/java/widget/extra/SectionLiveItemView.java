@@ -7,14 +7,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
+import utils.GlideUtils;
 
 /**
  * Created by ly on 2017/2/22.
@@ -52,21 +51,23 @@ public class SectionLiveItemView extends RelativeLayout {
     }
 
     public void build(String cover,String icon,String name,String title,String online){
-        Glide.with(getContext())
-                .load(cover)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.ic_launcher)
-                .centerCrop()
-                .dontAnimate()
-                .into(this.cover);
-        Glide.with(getContext())
-                .load(icon)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .bitmapTransform(new CropCircleTransformation(getContext()))
-                .centerCrop()
-                .dontAnimate()
-                .into(this.icon);
+//        Glide.with(getContext())
+//                .load(cover)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .placeholder(R.drawable.ic_launcher)
+//                .centerCrop()
+//                .dontAnimate()
+//                .into(this.cover);
+//        Glide.with(getContext())
+//                .load(icon)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .bitmapTransform(new CropCircleTransformation(getContext()))
+//                .dontAnimate()
+//                .into(this.icon);
 
+
+        GlideUtils.loadImg(getContext(),cover,this.cover);
+        GlideUtils.loadImg(getContext(),icon,this.icon,new CropCircleTransformation(getContext()));
         this.name.setText(name);
         this.title.setText(title);
         this.online.setText(online);

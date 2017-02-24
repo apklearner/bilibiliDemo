@@ -23,6 +23,7 @@ import base.BaseActivity;
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
 import butterknife.OnClick;
+import utils.StatusBarCompat;
 
 /**
  * Created by ly on 2017/2/18.
@@ -55,6 +56,8 @@ public class HomepageActivity extends BaseActivity implements NavigationView.OnN
         navigationView.getChildAt(0).setVerticalScrollBarEnabled(false);
         navigationView.setNavigationItemSelectedListener(this);
 
+        StatusBarCompat.compat(this,getResources().getColor(R.color.colorPrimary));
+
     }
 
     @Override
@@ -85,9 +88,13 @@ public class HomepageActivity extends BaseActivity implements NavigationView.OnN
                     fralist.add(HomeBangumiFragment.newInstance());
                     break;
                 case 3:
+                    fralist.add(HomeRegionFragment.newInstance() );
+                    break;
                 case 4:
-                case 5:
                     fralist.add(HomeBangumiFragment.newInstance());
+                    break;
+                case 5:
+                    fralist.add(HomeDisFragment.newInstance());
                     break;
             }
 

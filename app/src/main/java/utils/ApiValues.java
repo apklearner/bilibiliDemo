@@ -12,5 +12,7 @@ public interface ApiValues {
 
     String APP_BASE_URL ="http://app.bilibili.com/";
 
+    String SEARCH_BASE_URL = "http://s.search.bilibili.com/";
+
 
 }

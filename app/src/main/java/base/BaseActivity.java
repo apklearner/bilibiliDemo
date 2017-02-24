@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import bilibili.demoforbilibili.R;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import utils.StatusBarCompat;
 
 /**
  * Created by ly on 2017/2/18.
@@ -18,6 +16,9 @@ public abstract class BaseActivity  extends AppCompatActivity{
     protected  void  initToolBar(){};
     protected abstract void initView();
     protected  abstract int getLayoutRes();
+    protected void getIntentData(){};
+    protected void loadData(){};
+
     private Unbinder unbinder;
 
     @Override
@@ -31,9 +32,10 @@ public abstract class BaseActivity  extends AppCompatActivity{
 
         setContentView(getLayoutRes());
         unbinder =  ButterKnife.bind(this);
-        initView();
+        getIntentData();
         initToolBar();
-        StatusBarCompat.compat(this,getResources().getColor(R.color.colorPrimary));
+        initView();
+        loadData();
     }
 
     @Override

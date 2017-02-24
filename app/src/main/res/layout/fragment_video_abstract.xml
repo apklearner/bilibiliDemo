@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_bg"
+    android:overScrollMode="never"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tv_video_abstract_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="1111111111"
+            />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_video_abstract_play_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sss"
+        android:drawableLeft="@drawable/ic_clip_view_num"
+
+        android:gravity="center_vertical"/>
+
+
+    <TextView
+        android:id="@+id/tv_video_abstract_danm_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ss"
+        android:drawableLeft="@drawable/ic_clip_danmaku_num"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        />
+
+
+
+</LinearLayout>
+        <TextView
+            android:id="@+id/tv_video_abstract_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="111111"
+            />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+<!-- 分享  -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/tv_vide_abstract_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rect_radius_white"
+                    android:textSize="11sp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/share_green"
+
+                    />
+                <ImageView
+                    android:id="@+id/iv_vide_abstract_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/daily_video_action_bg"
+                    android:src="@drawable/ic_share_green"
+                    android:scaleType="centerInside"
+                    android:layout_marginTop="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="分享"
+                    android:textSize="11sp"
+                    />
+
+            </LinearLayout>
+
+   <!-- 投硬币 -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/tv_vide_abstract_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rect_radius_white"
+                    android:textSize="11sp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/coin_orange"
+
+                    />
+                <ImageView
+                    android:id="@+id/iv_vide_abstract_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/daily_video_action_bg"
+                    android:src="@drawable/ic_coin"
+                    android:scaleType="centerInside"
+                    android:layout_marginTop="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="投硬币"
+                    android:textSize="11sp"
+                    />
+
+            </LinearLayout>
+<!-- 收藏 -->
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/tv_vide_abstract_collect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rect_radius_white"
+                    android:textSize="11sp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/collect_pink"
+
+                    />
+                <ImageView
+                    android:id="@+id/iv_vide_abstract_collect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/daily_video_action_bg"
+                    android:src="@drawable/ic_collect"
+                    android:scaleType="centerInside"
+                    android:layout_marginTop="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="收藏"
+                    android:textSize="11sp"
+                    />
+
+            </LinearLayout>
+
+<!--  缓存  -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/share_green"
+
+                    />
+                <ImageView
+                    android:id="@+id/iv_vide_abstract_cache"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/daily_video_action_bg"
+                    android:src="@drawable/ic_download"
+                    android:scaleType="centerInside"
+                    android:layout_marginTop="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="缓存"
+                    android:textSize="11sp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/dis_line"
+    android:layout_marginTop="10dp"/>
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:paddingTop="10dp"
+         android:paddingBottom="10dp"
+         android:layout_marginLeft="10dp"
+         >
+
+<ImageView
+    android:id="@+id/iv_video_abstract_up_icon"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:scaleType="centerCrop"
+    />
+
+     <TextView
+         android:id="@+id/tv_video_abstract_up_name"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_toRightOf="@+id/iv_video_abstract_up_icon"
+         android:layout_alignTop="@+id/iv_video_abstract_up_icon"
+         android:textColor="@color/colorAccent"
+         android:textSize="12sp"
+         android:layout_marginLeft="10dp"
+         />
+
+         <TextView
+             android:id="@+id/tv_video_abstract_up_time"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@+id/iv_video_abstract_up_icon"
+             android:layout_alignBottom="@+id/iv_video_abstract_up_icon"
+             android:textColor="@color/live_button_gray"
+             android:textSize="10sp"
+             android:layout_marginLeft="10dp"
+             />
+
+         <TextView
+             android:id="@+id/tv_video_abstract_focus"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_alignParentRight="true"
+             android:layout_marginRight="10dp"
+             android:text="+关注"
+             android:background="@drawable/shape_rect_strock_radius_pink"
+             android:textSize="13sp"
+             android:paddingTop="4dp"
+             android:paddingBottom="4dp"
+             android:paddingLeft="8dp"
+             android:paddingRight="8dp"
+             android:textColor="@color/colorPrimary"
+             />
+
+     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/dis_line"
+        />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="10dp"
+           android:text="视频相关"
+           android:textSize="13sp"
+           android:layout_marginTop="10dp"
+           />
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/tags_video_abstract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            app:max_select="-1"
+            ></com.zhy.view.flowlayout.TagFlowLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recy_video_abstract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

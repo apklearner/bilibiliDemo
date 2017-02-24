@@ -6,13 +6,12 @@ import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import utils.GlideUtils;
 
 /**
  * Created by ly on 2017/2/22.
@@ -49,14 +48,16 @@ public class RecItemView extends RelativeLayout {
 
     }
 
-    public void build(String cover,String title,String  playCount,String danmCount){
-        Glide.with(getContext())
-                .load(cover)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.ic_launcher)
-                .centerCrop()
-                .dontAnimate()
-                .into(this.cover);
+    public void build(String cover,String title,String  playCount,String danmCount,int width,int height){
+//        Glide.with(getContext())
+//                .load(cover)
+//                .override(width,height)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .placeholder(R.drawable.ic_launcher)
+//                .centerCrop()
+//                .dontAnimate()
+//                .into(this.cover);
+        GlideUtils.loadImg(getContext(),cover,this.cover);
         this.title.setText(title);
         this.playCount.setText(playCount);
         this.danmCount.setText(danmCount);

@@ -5,6 +5,6 @@
 <widget.extra.RecItemView
     android:id="@+id/rec_item_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"></widget.extra.RecItemView>
+    android:layout_height="170dp"></widget.extra.RecItemView>
 
 </RelativeLayout>

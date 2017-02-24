@@ -1,5 +1,6 @@
 package modules.sections.recommand;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -9,6 +10,7 @@ import butterknife.ButterKnife;
 import modules.sections.HomeSections;
 import modules.sections.SectionRecyclerAdapter;
 import network.entity.HomeRecContentEntity;
+import utils.IntentHelper;
 import widget.extra.CommonFootView;
 import widget.extra.CommonHeaderView;
 import widget.extra.RecItemView;
@@ -19,10 +21,12 @@ import widget.extra.RecItemView;
 
 public class RecHotSection extends HomeSections {
 
+    private Context context;
     private HomeRecContentEntity.ResultBean data;
 
-    public  RecHotSection( HomeRecContentEntity.ResultBean data){
+    public  RecHotSection( Context context,HomeRecContentEntity.ResultBean data){
         super(R.layout.section_rec_hot_items,R.layout.section_header_common,R.layout.section_common_foot);
+        this.context = context;
         this.data = data;
     }
 
@@ -50,9 +54,18 @@ public class RecHotSection extends HomeSections {
     protected void onBindItemView(RecyclerView.ViewHolder viewHolder, int position) {
 //        super.onBindItemView(viewHolder, position);
         ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
-        HomeRecContentEntity.ResultBean.BodyBean bodyBean = data.getBody().get(position-1);
+        final HomeRecContentEntity.ResultBean.BodyBean bodyBean = data.getBody().get(position-1);
         itemViewHolder.recItemView.build(bodyBean.getCover(),
-                bodyBean.getTitle(),bodyBean.getPlay(),bodyBean.getDanmaku());
+                bodyBean.getTitle(),bodyBean.getPlay(),bodyBean.getDanmaku(),
+                bodyBean.getWidth(),bodyBean.getHeight()
+                );
+
+        itemViewHolder.recItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentHelper.openVideoDetail(context,bodyBean.getParam());
+            }
+        });
 
     }
 

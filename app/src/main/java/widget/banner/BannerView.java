@@ -11,15 +11,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 
 import bilibili.demoforbilibili.R;
 import utils.DensityUtils;
+import utils.GlideUtils;
 
 /**
  * Created by ly on 2017/2/19.
@@ -122,13 +120,14 @@ public class BannerView  extends RelativeLayout implements ViewPager.OnPageChang
     private ImageView createImageView(String imgUrl){
         ImageView imageView = new ImageView(getContext());
 //            imageView.setLayoutParams(new MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        Glide.with(getContext())
-                .load(imgUrl)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.ic_launcher)
-                .centerCrop()
-                .dontAnimate()
-                .into(imageView);
+//        Glide.with(getContext())
+//                .load(imgUrl)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .placeholder(R.drawable.ic_launcher)
+//                .centerCrop()
+//                .dontAnimate()
+//                .into(imageView);
+        GlideUtils.loadImg(getContext(),imgUrl,imageView);
         return imageView;
     }
 

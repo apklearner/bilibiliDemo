@@ -3,8 +3,6 @@ package modules.sections.recommand;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import bilibili.demoforbilibili.R;
@@ -13,6 +11,7 @@ import butterknife.ButterKnife;
 import modules.sections.HomeSections;
 import modules.sections.SectionRecyclerAdapter;
 import network.entity.HomeRecContentEntity;
+import utils.GlideUtils;
 import widget.extra.CommonHeaderView;
 
 /**
@@ -49,12 +48,13 @@ public class RecTopicSection extends HomeSections {
     @Override
     protected void onBindItemView(RecyclerView.ViewHolder viewHolder, int position) {
         ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
-        Glide.with(itemViewHolder.cover.getContext())
-                .load(resultBean.getBody().get(0).getCover())
-                .placeholder(R.drawable.ic_launcher)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
-                .into(itemViewHolder.cover);
+//        Glide.with(itemViewHolder.cover.getContext())
+//                .load(resultBean.getBody().get(0).getCover())
+//                .placeholder(R.drawable.ic_launcher)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .dontAnimate()
+//                .into(itemViewHolder.cover);
+        GlideUtils.loadImg(itemViewHolder.cover.getContext(),resultBean.getBody().get(0).getCover(),itemViewHolder.cover);
     }
 
     @Override

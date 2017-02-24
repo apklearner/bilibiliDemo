@@ -10,4 +10,11 @@
     <color name="live_button_gray_text">#aaaaaa</color>
     <color name="bangumi_transparent_gray">#cc666666</color>
     <color name="order_orange">#ffaa00</color>
+    <color name="main_bg">#E5E5E5</color>
+    <color name="dis_line">#666666</color>
+    <color name="white">#ffffff</color>
+
+    <color name="share_green">#00ffbb</color>
+    <color name="coin_orange">#ffaa00</color>
+    <color name="collect_pink">@color/colorPrimary</color>
 </resources>

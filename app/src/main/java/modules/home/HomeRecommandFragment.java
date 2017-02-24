@@ -118,7 +118,7 @@ public class HomeRecommandFragment  extends HomeBaseFragment{
     private void loadContentData(HomeRecContentEntity homeRecContentEntity){
         for(HomeRecContentEntity.ResultBean bean : homeRecContentEntity.getResult()){
             if(bean.getType().equals("recommend") || bean.getType().equals("region")){
-                adapter.addSections(new RecHotSection(bean));
+                adapter.addSections(new RecHotSection(getActivity(),bean));
             }else if(bean.getType().equals("live")){
                 adapter.addSections(new HomeLiveItemSection(bean));
             }else if(bean.getType().equals("bangumi_2")){

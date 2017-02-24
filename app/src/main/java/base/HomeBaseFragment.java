@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import bilibili.demoforbilibili.R;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by ly on 2017/2/18.
@@ -20,8 +18,7 @@ import butterknife.Unbinder;
 
 public abstract class HomeBaseFragment extends  BaseFramgment {
 
-    protected View view;
-    private Unbinder unbinder;
+   /* protected View view;*/
     protected SwipeRefreshLayout mswipeRefresh;
     protected RecyclerView mrecyclerView;
 
@@ -29,7 +26,7 @@ public abstract class HomeBaseFragment extends  BaseFramgment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.fg_base_recyclerview,container,false);
+        View view = inflater.inflate(R.layout.fg_base_recyclerview,container,false);
         mswipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.home_swiperefresh);
         mrecyclerView = (RecyclerView) view.findViewById(R.id.home_recycle);
         return view;
@@ -39,30 +36,14 @@ public abstract class HomeBaseFragment extends  BaseFramgment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        unbinder = ButterKnife.bind(this,view);
-    }
-
-    @Override
-    public void onDestroyView() {
-        unbinder.unbind();
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         mswipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshData();
             }
         });
-        initView();
-        loadData();
     }
 
-    protected  void loadData(){};
-    protected  void initView(){};
 
     protected  void refreshData(){
         handler.sendEmptyMessageDelayed(0,2500);

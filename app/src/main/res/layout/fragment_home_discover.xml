@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tv_fra_dis_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="搜索视频,番剧,up主或av号"
+            android:padding="10dp"
+            android:background="@color/title_w_n"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:drawableStart="@drawable/ic_hint_search"
+            android:drawablePadding="10dp"
+            android:drawableEnd="@drawable/ic_scan"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="大家都在搜"
+            />
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scroill_fra_dis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/tag_layou_fra_dis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:max_select="-1"
+                >
+
+
+            </com.zhy.view.flowlayout.TagFlowLayout>
+
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            >
+
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/dis_line"/>
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/live_button_gray"
+                android:text="查看更多"
+                android:textSize="12sp"
+                android:drawableLeft="@drawable/selector_dis_arror"
+                android:drawablePadding="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/dis_line"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_fra_dis_hobby"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/live_button_gray"
+            android:text="兴趣圈"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_quanzi"
+            android:drawablePadding="10dp"
+            android:background="@color/title_w_n"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_fra_dis_or_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="原创排行榜"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_btn_rank_original"
+            android:drawablePadding="10dp"
+            android:background="@color/title_w_n"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/live_button_gray"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/main_bg"/>
+        <TextView
+            android:id="@+id/tv_fra_dis_gl_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/live_button_gray"
+            android:text="全区排行榜"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_btn_rank_all"
+            android:drawablePadding="10dp"
+            android:background="@color/title_w_n"
+            />
+
+        <TextView
+            android:id="@+id/tv_fra_dis_game"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/live_button_gray"
+            android:text="游戏中心"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_btn_rank_all"
+            android:drawablePadding="10dp"
+            android:background="@color/title_w_n"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="100dp"
+            />
+
+    </LinearLayout>
+
+
+
+
+</android.support.v4.widget.NestedScrollView>
