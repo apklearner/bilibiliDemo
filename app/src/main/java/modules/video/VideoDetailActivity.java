@@ -1,5 +1,6 @@
 package modules.video;
 
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -74,6 +75,14 @@ public class VideoDetailActivity extends BaseActivity {
         adapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        fbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VideoDetailActivity.this,VideoPlayActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 

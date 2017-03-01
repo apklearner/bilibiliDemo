@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+<widget.media.VideoTouchView
+    android:id="@+id/video_touch_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="60dp"
+    ></widget.media.VideoTouchView>
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:clipChildren="false"
+            android:background="@color/bangumi_transparent_gray"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/iv_play_video_control"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/selector_play_button"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+               />
+
+            <TextView
+                android:id="@+id/tv_curpos_video_control"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="00:00"
+                android:layout_weight="1"
+                />
+
+            <SeekBar
+                android:id="@+id/seekbar_play_vicdeo_control"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxHeight="5dp"
+                android:minHeight="5dp"
+                android:progressDrawable="@drawable/shape_seekbar"
+                android:thumb="@drawable/videoplayer_erect_icon_round"
+                android:max="1000"
+                android:layout_weight="12"
+                />
+            <TextView
+                android:id="@+id/tv_total_video_control"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="11:11"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -529,16 +529,16 @@ public class ReplyChildEntity {
              * pid : 0
              */
 
-            private int expire;
+            private long expire;
             private String image;
             private String name;
             private int pid;
 
-            public int getExpire() {
+            public long getExpire() {
                 return expire;
             }
 
-            public void setExpire(int expire) {
+            public void setExpire(long expire) {
                 this.expire = expire;
             }
 
