@@ -276,4 +276,15 @@ public class VideoTouchView extends RelativeLayout {
             }
         }
     };
+
+    public void setProgressText(int duration){
+        handler.removeCallbacksAndMessages(null);
+        progressText.setVisibility(View.VISIBLE);
+        progressText.setText(DurationUtils.calculateTime(duration));
+    }
+
+    public void completeSeek(){
+        progressText.setVisibility(View.GONE);
+    }
+
 }

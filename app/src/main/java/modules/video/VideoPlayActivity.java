@@ -19,7 +19,7 @@ public class VideoPlayActivity extends BaseActivity   {
 
     @BindView(R.id.videoview)
     IjkVideoView videoView;
-    @BindView(R.id.mediacontroller)
+//    @BindView(R.id.mediacontroller)
     TVMediaController mediaController;
     @BindView(R.id.progress)
     ProgressBar progressBar;
@@ -27,6 +27,9 @@ public class VideoPlayActivity extends BaseActivity   {
     private String path = "/storage/extSdCard/Videos/Others/灵梦和幽幽子的弹幕.mp4";
     @Override
     protected void initView() {
+
+        mediaController = new TVMediaController(this);
+
         videoView.setMediaController(mediaController);
         videoView.setOnSeekCompleteListener(onSeekCompleteListener);
         videoView.setOnInfoListener(onInfoListener);

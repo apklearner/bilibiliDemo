@@ -8,11 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"></widget.media.IjkVideoView>
 
-<widget.media.TVMediaController
-    android:id="@+id/mediacontroller"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"></widget.media.TVMediaController>
-
 <ProgressBar
     android:id="@+id/progress"
     android:layout_width="wrap_content"

@@ -23,6 +23,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -110,6 +111,7 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
         if(b){
             seekBar.setProgress(i);
             currentProgress = (float)i/1000;
+            videoTouchView.setProgressText((int) (currentProgress*totalDuration/1000));
         }
 
 
@@ -129,6 +131,7 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
         if(currentProgress == 1000){
             completePlay();
         }
+        videoTouchView.completeSeek();
     }
 
     @Override
@@ -143,7 +146,7 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
 
     @Override
     public void setAnchorView(View view) {
-
+        ((ViewGroup)view).addView(this);
     }
 
 
