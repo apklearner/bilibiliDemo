@@ -16,14 +16,18 @@
 
 package widget.media;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,9 +41,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import utils.DurationUtils;
 import widget.callback.VideoControllCallBack;
+import widget.callback.VideoStatusCallBack;
 
 public class TVMediaController extends FrameLayout implements IMediaController, SeekBar.OnSeekBarChangeListener, VideoControllCallBack {
 
+    @BindView(R.id.iv_play_video_zoom)
+    ImageView zoom;
     @BindView(R.id.iv_play_video_control)
     ImageView playBtn;
     @BindView(R.id.seekbar_play_vicdeo_control)
@@ -54,6 +61,9 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
     LinearLayout ll;
 
 
+
+    private boolean isZoomOut ; //放大全屏
+    private boolean isplaying;
 
     private MediaController.MediaPlayerControl mediaControl;
     private float currentProgress;
@@ -78,6 +88,7 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
         seekBar.setOnSeekBarChangeListener(this);
         playBtn.setSelected(true);
         videoTouchView.setVideoControllCallBack(this);
+//        enableTouchEvent(false);
     }
 
     @OnClick(R.id.iv_play_video_control)
@@ -86,6 +97,9 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
             handler.removeCallbacksAndMessages(null);
             playBtn.setSelected(false);
             mediaControl.pause();
+
+            if(callBack!=null) callBack.pause();
+
         }else {
             if(curPosition == totalDuration && totalDuration >0){
                 curPosition = 0;
@@ -94,6 +108,8 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
                 mediaControl.start();
             }
             playBtn.setSelected(true);
+
+            if(callBack!=null) callBack.start();
 
             handler.sendEmptyMessageDelayed(0,1000);
         }
@@ -181,6 +197,7 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
         totalDuration = mediaControl.getDuration();
         curPosition = currentDuratin;
         handler.sendEmptyMessage(0);
+        handlerLLDelay();
     }
 
 
@@ -222,6 +239,8 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
                     handler.sendEmptyMessageDelayed(0,1000);
 
                     curPosition +=1000;
+//                    handlerLLDelay();
+
 
                     break;
                 case 1:
@@ -235,6 +254,20 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
     };
 
 
+    /**
+     * 隐藏控制器
+     */
+    private void handlerLLDelay(){
+        if(ll.getVisibility() == View.VISIBLE){
+            handler.sendEmptyMessageDelayed(1,3000);
+        }
+    }
+
+
+    /**
+     * 这是手势滑动的进度回调（非seekbar）
+     * @param duration
+     */
     @Override
     public void seekTo(int duration) {
 
@@ -267,12 +300,15 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
     public boolean dispatchTouchEvent(MotionEvent ev) {
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
-                handler.removeCallbacksAndMessages(null);
+                Log.i("Controller","dispatch    ACTION_DOWN");
+//                handler.removeCallbacksAndMessages(null);
                 ll.setVisibility(View.VISIBLE);
 //                Log.i("TMController","ACTION_DOWN ");
                 break;
             case MotionEvent.ACTION_UP:
-                handler.sendEmptyMessageDelayed(1,3000);
+                Log.i("Controller","dispatch    ACTION_UP");
+                handlerLLDelay();
+//                handler.sendEmptyMessageDelayed(1,3000);
 //                Log.i("TMController","ACTION_UP ");
                 break;
         }
@@ -287,4 +323,75 @@ public class TVMediaController extends FrameLayout implements IMediaController, 
 //            ll.setVisibility(View.GONE);
 //        }
 //    };
+
+
+    /***
+     *  新添加的 横竖屏配置更改
+     *  重要！！！
+     */
+    @OnClick(R.id.iv_play_video_zoom)
+    public void zoom(){
+
+        ll.setVisibility(View.GONE);
+
+        Activity activity = (Activity) getContext();
+        WindowManager.LayoutParams attrs = activity.getWindow().getAttributes();
+        if(!isZoomOut){
+
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            activity.getWindow().setAttributes(attrs);
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            setZoomOut(true);
+
+        }else {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            activity.getWindow().setAttributes(attrs);
+            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            setZoomOut(false);
+        }
+    }
+
+    public void setZoomOut(boolean zoomOut){
+        this.isZoomOut = zoomOut;
+//        enableTouchEvent(zoomOut);
+    }
+
+    public boolean isZoomOut(){
+        return this.isZoomOut;
+    }
+
+    public void enableTouchEvent(boolean isTouchable){
+        videoTouchView.enableTouchEvent(isTouchable);
+    }
+
+    /**
+     * 手势冲突处理解决方案 大概
+     * @param ev
+     * @return
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        requestDisallowInterceptTouchEvent(true);
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    /**
+     * 这个回调处理界面暂停状态
+     * 竖屏时候 暂停状态 是可以向上滑动的
+     * 横屏不受影响
+     */
+    private VideoStatusCallBack callBack;
+
+    public void setVideoStatusCallBack(VideoStatusCallBack callBack){
+        this.callBack = callBack;
+    }
+
+
+    public boolean isplaying(){
+        return mediaControl.isPlaying();
+    }
+
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/coordinator"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,12 +24,23 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             >
 
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/video_height"
+            >
+            <include layout="@layout/activity_play_video"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                />
             <ImageView
                 android:id="@+id/iv_video_bg"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 />
+        </RelativeLayout>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tb_video"
                 android:layout_width="match_parent"

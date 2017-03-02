@@ -1,5 +1,6 @@
 package utils;
 
+import android.app.Activity;
 import android.content.Context;
 
 /**
@@ -12,4 +13,12 @@ public class DensityUtils {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
+
+    public static int getWindowHieght(Activity activity){
+        return activity.getResources().getDisplayMetrics().heightPixels;
+    }
+    public static int getWindowWidth(Activity activity){
+        return activity.getResources().getDisplayMetrics().widthPixels;
+    }
+
 }

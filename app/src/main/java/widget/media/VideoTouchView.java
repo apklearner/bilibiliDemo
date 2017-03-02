@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,6 +46,8 @@ public class VideoTouchView extends RelativeLayout {
     private final int MESSAGE_BRIGHTNESS = 0;
 
     private VideoControllCallBack callBack;
+
+    private boolean isTouchable = true;
 
 
     public VideoTouchView(Context context) {
@@ -195,9 +198,13 @@ public class VideoTouchView extends RelativeLayout {
 //        return super.onTouchEvent(event);
 //        gestureDetector.onTouchEvent(event);
 //        return  true;
+        if(!isTouchable){
+            return true;
+        }
+
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-
+                Log.i("VideoTouchView", "   ACTION_DOWN");
                 handler.removeCallbacksAndMessages(null);
                 progressText.setVisibility(View.GONE);
 
@@ -216,6 +223,7 @@ public class VideoTouchView extends RelativeLayout {
 
                 break;
             case MotionEvent.ACTION_MOVE:
+                Log.i("VideoTouchView", "   ACTION_MOVE");
                 float newY = event.getY();
                 float newX = event.getX();
                 int deltaY = (int) (newY - mOldY);
@@ -244,6 +252,7 @@ public class VideoTouchView extends RelativeLayout {
 
                     break;
             case MotionEvent.ACTION_UP:
+                Log.i("VideoTouchView", "   ACTION_UP");
                 if(isProgressSlide&&callBack!=null){
                     callBack.seekTo((int) curDuration);
                     progressText.setVisibility(View.GONE);
@@ -285,6 +294,11 @@ public class VideoTouchView extends RelativeLayout {
 
     public void completeSeek(){
         progressText.setVisibility(View.GONE);
+    }
+
+    public void enableTouchEvent(boolean isTouchable){
+        this.isTouchable = isTouchable;
+        Log.i("VideoTouchView", "   "+isTouchable );
     }
 
 }
