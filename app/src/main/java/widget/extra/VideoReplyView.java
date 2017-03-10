@@ -76,6 +76,8 @@ public class VideoReplyView extends RelativeLayout {
         comNum.setText(data.getCount()+"");
         supNum.setText(data.getLike()+"");
 
+        childFloorView.clearData();
+
         if(data.getReplies().size() >0 ){
             childFloorView.setVisibility(View.VISIBLE);
             childFloorView.build(data.getReplies());

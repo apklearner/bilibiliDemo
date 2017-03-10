@@ -22,13 +22,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-                <com.makeramen.roundedimageview.RoundedImageView
+                <ImageView
                     android:id="@+id/iv_rec_cover"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    app:riv_corner_radius_top_right="@dimen/live_card_radius"
-                    app:riv_corner_radius_top_left="@dimen/live_card_radius"
-                    android:scaleType="centerCrop"
                     />
 
                 <TextView

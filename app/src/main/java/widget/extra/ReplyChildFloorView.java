@@ -58,6 +58,12 @@ public class ReplyChildFloorView extends RelativeLayout {
     }
 
 
+    public void clearData(){
+        if(ll!=null){
+            ll.removeAllViews();
+        }
+    }
+
     class ViewHolder{
         @BindView(R.id.tv_reply_child_floor_name)
         TextView name;

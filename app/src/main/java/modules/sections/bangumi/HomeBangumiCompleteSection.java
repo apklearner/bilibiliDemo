@@ -59,7 +59,7 @@ public class HomeBangumiCompleteSection extends HomeSections {
 //                .diskCacheStrategy(DiskCacheStrategy.ALL)
 //                .dontAnimate()
 //                .into(itemViewHolder.cover);
-        GlideUtils.loadImg(context,datalist.get(position -1).getCover(),itemViewHolder.cover);
+        GlideUtils.loadImgWidthDefaultCorner(context,datalist.get(position -1).getCover(),itemViewHolder.cover);
         itemViewHolder.title.setText(datalist.get(position-1).getTitle());
         itemViewHolder.total.setText(datalist.get(position-1).getTotal_count()+"话全");
 

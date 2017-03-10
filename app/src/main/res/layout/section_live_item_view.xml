@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <widget.extra.SectionLiveItemView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/section_live"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"></widget.extra.SectionLiveItemView>
+        android:layout_width="match_parent"
+        android:layout_height="165dp"></widget.extra.SectionLiveItemView>
 
-</RelativeLayout>

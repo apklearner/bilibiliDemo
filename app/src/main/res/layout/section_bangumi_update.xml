@@ -32,13 +32,10 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content">
 
-                  <com.makeramen.roundedimageview.RoundedImageView
+                  <ImageView
                       android:id="@+id/iv_bangumi_item_cover"
                       android:layout_width="match_parent"
                       android:layout_height="110dp"
-                      android:scaleType="centerCrop"
-                      app:riv_corner_radius_top_right="@dimen/live_card_radius"
-                      app:riv_corner_radius_top_left="@dimen/live_card_radius"
                       />
 
 

@@ -7,8 +7,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
-
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,7 +20,7 @@ import utils.GlideUtils;
 public class SectionLiveItemView extends RelativeLayout {
 
     @BindView(R.id.iv_live_item_bg)
-    RoundedImageView cover;
+    ImageView cover;
     @BindView(R.id.iv_live_item_icon)
     ImageView icon;
     @BindView(R.id.tv_live_item_online)
@@ -66,7 +64,8 @@ public class SectionLiveItemView extends RelativeLayout {
 //                .into(this.icon);
 
 
-        GlideUtils.loadImg(getContext(),cover,this.cover);
+//        GlideUtils\.loadImg(getContext(),cover,this.cover);
+        GlideUtils.loadImgWidthDefaultCorner(getContext(),cover,this.cover);
         GlideUtils.loadImg(getContext(),icon,this.icon,new CropCircleTransformation(getContext()));
         this.name.setText(name);
         this.title.setText(title);

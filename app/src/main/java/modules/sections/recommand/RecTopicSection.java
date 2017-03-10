@@ -2,8 +2,7 @@ package modules.sections.recommand;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import com.makeramen.roundedimageview.RoundedImageView;
+import android.widget.ImageView;
 
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
@@ -54,7 +53,7 @@ public class RecTopicSection extends HomeSections {
 //                .diskCacheStrategy(DiskCacheStrategy.ALL)
 //                .dontAnimate()
 //                .into(itemViewHolder.cover);
-        GlideUtils.loadImg(itemViewHolder.cover.getContext(),resultBean.getBody().get(0).getCover(),itemViewHolder.cover);
+        GlideUtils.loadImgWidthDefaultCorner(itemViewHolder.cover.getContext(),resultBean.getBody().get(0).getCover(),itemViewHolder.cover);
     }
 
     @Override
@@ -84,7 +83,7 @@ public class RecTopicSection extends HomeSections {
 
     class ItemViewHolder extends  RecyclerView.ViewHolder{
         @BindView(R.id.iv_section_topic)
-        RoundedImageView cover;
+        ImageView cover;
 
         public ItemViewHolder(View itemView) {
             super(itemView);

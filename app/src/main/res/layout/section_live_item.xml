@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="165dp"
     app:cardCornerRadius="@dimen/live_card_radius"
+    app:contentPadding="0dp"
     app:cardElevation="@dimen/live_card_shadow"
     app:cardPreventCornerOverlap="false"
     >
@@ -19,16 +20,15 @@
         >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         >
 
-        <com.makeramen.roundedimageview.RoundedImageView
+        <ImageView
             android:id="@+id/iv_live_item_bg"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            app:riv_corner_radius_top_left="@dimen/live_card_radius"
-            app:riv_corner_radius_top_right="@dimen/live_card_radius"
-            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:padding="0dp"
             />
 
         <ImageView

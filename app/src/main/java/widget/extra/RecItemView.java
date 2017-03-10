@@ -3,10 +3,9 @@ package widget.extra;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
@@ -20,7 +19,7 @@ import utils.GlideUtils;
 public class RecItemView extends RelativeLayout {
 
     @BindView(R.id.iv_rec_cover)
-    RoundedImageView cover;
+    ImageView cover;
     @BindView(R.id.tv_rec_title)
     TextView title;
     @BindView(R.id.tv_rec_play_count)
@@ -57,7 +56,7 @@ public class RecItemView extends RelativeLayout {
 //                .centerCrop()
 //                .dontAnimate()
 //                .into(this.cover);
-        GlideUtils.loadImg(getContext(),cover,this.cover);
+        GlideUtils.loadImgWidthDefaultCorner(getContext(),cover,this.cover);
         this.title.setText(title);
         this.playCount.setText(playCount);
         this.danmCount.setText(danmCount);

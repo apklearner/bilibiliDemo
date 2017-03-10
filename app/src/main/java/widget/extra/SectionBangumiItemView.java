@@ -5,10 +5,9 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import bilibili.demoforbilibili.R;
 import butterknife.BindView;
@@ -22,7 +21,7 @@ import utils.GlideUtils;
 public class SectionBangumiItemView extends RelativeLayout {
 
     @BindView(R.id.iv_bangumi_item_cover)
-    RoundedImageView cover;
+    ImageView cover;
     @BindView(R.id.tv_bangumi_item_watch)
     TextView watch;
     @BindView(R.id.tv_bangumi_item_title)
@@ -58,7 +57,7 @@ public class SectionBangumiItemView extends RelativeLayout {
 //                .centerCrop()
 //                .dontAnimate()
 //                .into(this.cover);
-        GlideUtils.loadImg(getContext(),cover,this.cover);
+        GlideUtils.loadImgWidthDefaultCorner(getContext(),cover,this.cover);
 
         if(!TextUtils.isEmpty(watchCount)){
             if(Integer.valueOf(watchCount) < 100){

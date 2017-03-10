@@ -89,7 +89,7 @@
         app:menu="@menu/home_navi"
         android:fitsSystemWindows="true"
         android:layout_marginRight="30dp"
-
+        android:background="#ffffff"
         ></android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

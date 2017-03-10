@@ -3,9 +3,8 @@ package modules.sections.bangumi;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -61,7 +60,7 @@ public class HomeBangumiRecommandSection extends HomeSections {
 //                .diskCacheStrategy(DiskCacheStrategy.ALL)
 //                .dontAnimate()
 //                .into(itemViewHolder.cover);
-        GlideUtils.loadImg(context,datalist.get(position-1).getCover(),itemViewHolder.cover);
+        GlideUtils.loadImgWidthDefaultCorner(context,datalist.get(position-1).getCover(),itemViewHolder.cover);
         itemViewHolder.title.setText(datalist.get(position-1).getTitle());
         itemViewHolder.desc.setText(datalist.get(position-1).getDesc());
 
@@ -87,7 +86,7 @@ public class HomeBangumiRecommandSection extends HomeSections {
     class ItemViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.iv_bangumi_item1_cover)
-        RoundedImageView cover;
+        ImageView cover;
         @BindView(R.id.tv_bangumi_item1_title)
         TextView title;
         @BindView(R.id.tv_bangumi_item1_des)

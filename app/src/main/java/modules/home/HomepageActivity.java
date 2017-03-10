@@ -79,7 +79,8 @@ public class HomepageActivity extends BaseActivity implements NavigationView.OnN
 //            }
             switch (i){
                 case 0:
-                    fralist.add(HomeLiveFragment.newInstance());
+//                    fralist.add(HomeLiveFragment.newInstance());
+                    fralist.add(modules.multitypeuse.modules.HomeLiveFragment.newInstance());
                     break;
                 case 1:
                     fralist.add(HomeRecommandFragment.newInstance());
