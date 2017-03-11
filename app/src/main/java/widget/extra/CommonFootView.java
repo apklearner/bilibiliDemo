@@ -56,6 +56,14 @@ public class CommonFootView extends RelativeLayout {
         change.setVisibility(View.VISIBLE);
     }
 
+    public void onNormal(){
+        card.setVisibility(View.VISIBLE);
+        refresh.setVisibility(View.VISIBLE);
+        btnMore.setVisibility(View.VISIBLE);
+        active.setVisibility(View.VISIBLE);
+        change.setVisibility(View.GONE);
+    }
+
     public void setBtnText(String content){
         btnMore.setText(content);
     }

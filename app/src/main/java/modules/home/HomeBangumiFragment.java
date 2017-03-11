@@ -6,12 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base.HomeBaseFragment;
-import modules.sections.SectionRecyclerAdapter;
-import modules.sections.HomeBannerSection;
-import modules.sections.bangumi.HomeBangumiCompleteSection;
-import modules.sections.bangumi.HomeBangumiRecommandSection;
-import modules.sections.bangumi.HomeBangumiTypeSection;
-import modules.sections.bangumi.HomeBangumiUpdateSection;
+import me.drakeet.multitype.Items;
+import me.drakeet.multitype.MultiTypeAdapter;
+import widget.decoration.BaseDecoration;
+import modules.multitypeuse.items.bangumi.BangumiComplete;
+import modules.multitypeuse.items.bangumi.BangumiCompleteViewProvider;
+import modules.multitypeuse.items.bangumi.BangumiHeadItem;
+import modules.multitypeuse.items.bangumi.BangumiHeadItemViewProvider;
+import modules.multitypeuse.items.bangumi.BangumiRecommand;
+import modules.multitypeuse.items.bangumi.BangumiRecommandViewProvider;
+import modules.multitypeuse.items.bangumi.BangumiType;
+import modules.multitypeuse.items.bangumi.BangumiTypeViewProvider;
+import modules.multitypeuse.items.bangumi.BangumiUpdate;
+import modules.multitypeuse.items.bangumi.BangumiUpdateViewProvider;
+import modules.multitypeuse.items.banner.BannerItem;
+import modules.multitypeuse.items.banner.BannerItemViewProvider;
+import modules.multitypeuse.items.base.ItemTypeValues;
 import network.entity.HomeBangumiMainEntity;
 import network.entity.HomeBangumiRecEntity;
 import rx.android.schedulers.AndroidSchedulers;
@@ -20,20 +30,21 @@ import rx.schedulers.Schedulers;
 import utils.ApiGengder;
 import utils.DensityUtils;
 import widget.banner.BannerEntity;
-import widget.decoration.BangumiItemDecoration;
 
 /**
- * Created by ly on 2017/2/21.
+ * Created by ly on 2017/3/11.
  */
 
 public class HomeBangumiFragment extends HomeBaseFragment {
 
 
-    private SectionRecyclerAdapter adapter;
+
+    private MultiTypeAdapter adapter;
     private GridLayoutManager manager;
+    private Items items = new Items();
 
     public static HomeBangumiFragment newInstance(){
-        HomeBangumiFragment instance = new HomeBangumiFragment();
+       HomeBangumiFragment instance = new HomeBangumiFragment();
         return instance;
 
     }
@@ -42,24 +53,36 @@ public class HomeBangumiFragment extends HomeBaseFragment {
     @Override
     protected void initView() {
         super.initView();
-        adapter = new SectionRecyclerAdapter();
+        adapter = new MultiTypeAdapter();
         manager = new GridLayoutManager(getActivity(),6);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                switch (adapter.getSpanViewType(position)){
-                    case SectionRecyclerAdapter.VIEW_TYPE_HEADER:
-                    case SectionRecyclerAdapter.VIEW_TYPE_ITEM_1:
+                switch (ItemTypeValues.getChildTypes(items.get(position))){
+                    case ItemTypeValues.VIEW_TYPE_BANNER:
+                    case ItemTypeValues.VIEW_TYPE_HEADER:
+                    case ItemTypeValues.VIEW_TYPE_FOOTER:
+                    case ItemTypeValues.VIEW_TYPE_ITEM_1:
                         return 6;
-                    case SectionRecyclerAdapter.VIEW_TYPE_ITEM_2:
+                    case ItemTypeValues.VIEW_TYPE_ITEM_2:
                         return 3;
-                    case SectionRecyclerAdapter.VIEW_TYPE_ITEM_3:
+                    case ItemTypeValues.VIEW_TYPE_ITEM_3:
                         return 2;
                 }
                 return 0;
             }
         });
-        mrecyclerView.addItemDecoration(new BangumiItemDecoration(getActivity(), DensityUtils.Dp2px(getActivity(),10),6));
+
+        adapter.register(BannerItem.class, new BannerItemViewProvider());
+        adapter.register(BangumiType.class,new BangumiTypeViewProvider());
+        adapter.register(BangumiHeadItem.class,new BangumiHeadItemViewProvider());
+        adapter.register(BangumiUpdate.class,new BangumiUpdateViewProvider());
+        adapter.register(BangumiComplete.class,new BangumiCompleteViewProvider());
+        adapter.register(BangumiRecommand.class,new BangumiRecommandViewProvider());
+
+
+        adapter.setItems(items);
+        mrecyclerView.addItemDecoration(new BaseDecoration(DensityUtils.Dp2px(getActivity(),10),items));
         mrecyclerView.setLayoutManager(manager);
         mrecyclerView.setAdapter(adapter);
 
@@ -74,6 +97,7 @@ public class HomeBangumiFragment extends HomeBaseFragment {
                 .subscribe(new Action1<HomeBangumiMainEntity>() {
                     @Override
                     public void call(HomeBangumiMainEntity homeBangumiMainEntity) {
+                        items.clear();
                         loadMainData(homeBangumiMainEntity);
 //                        adapter.notifyDataSetChanged();
                         requestRecData();
@@ -90,15 +114,24 @@ public class HomeBangumiFragment extends HomeBaseFragment {
 
 
     private void loadMainData(HomeBangumiMainEntity homeBangumiMainEntity){
-        List<BannerEntity>  bannerlist = new ArrayList<>();
+        List<BannerEntity> bannerlist = new ArrayList<>();
         for(HomeBangumiMainEntity.ResultBean.BannersBean banner:homeBangumiMainEntity.getResult().getBanners()){
             bannerlist.add(new BannerEntity(banner.getImg()));
         }
 
-        adapter.addSections(new HomeBannerSection(bannerlist));
-        adapter.addSections(new HomeBangumiTypeSection(getActivity()));
-        adapter.addSections(new HomeBangumiUpdateSection(homeBangumiMainEntity.getResult().getLatestUpdate()));
-        adapter.addSections(new HomeBangumiCompleteSection(getActivity(),homeBangumiMainEntity.getResult().getEnds()));
+        items.add(new BannerItem(bannerlist));
+        items.add(new BangumiType());
+        items.add(new BangumiHeadItem("",homeBangumiMainEntity.getResult().getLatestUpdate().getUpdateCount()));
+        for(int i =0;i<4;i++){
+            items.add(new BangumiUpdate(homeBangumiMainEntity.getResult().getLatestUpdate().getList().get(i),i));
+        }
+        items.add(new BangumiHeadItem("",BangumiHeadItem.BANGUMI_TYPE_2,false));
+        for(int i =0;i<3 ;i++){
+            items.add(new BangumiComplete(homeBangumiMainEntity.getResult().getEnds().get(i),i));
+        }
+
+        items.add(new BangumiHeadItem("",BangumiHeadItem.BANGUMI_TYPE_3,false));
+
     }
     private void requestRecData(){
         ApiGengder.getBangumiService().getHomeBangumiRec()
@@ -121,8 +154,9 @@ public class HomeBangumiFragment extends HomeBaseFragment {
     }
 
     private void loadRecData(HomeBangumiRecEntity homeBangumiRecEntity){
-        adapter.addSections(new HomeBangumiRecommandSection(getActivity(),homeBangumiRecEntity.getResult()));
+        for(int i =0;i< homeBangumiRecEntity.getResult().size();i++){
+            items.add(new BangumiRecommand(homeBangumiRecEntity.getResult().get(i),i));
+        }
+
     }
-
-
 }

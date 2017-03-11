@@ -1,12 +1,13 @@
 package modules.multitypeuse.items.live;
 
+import modules.multitypeuse.items.base.BaseItems;
 import network.entity.HomeLiveEntity;
 import network.entity.HomeRecContentEntity;
 
 /**
  * Created by ly on 2017/3/9.
  */
-public class LiveTextItem {
+public class LiveTextItem extends BaseItems{
 
     public HomeLiveEntity.DataBean.PartitionsBean.LivesBeanX data;
 
@@ -14,7 +15,6 @@ public class LiveTextItem {
 
     public boolean isRecommamd;
 
-    public int position;
 
     public LiveTextItem(HomeLiveEntity.DataBean.PartitionsBean.LivesBeanX data,int position) {
         this.data = data;

@@ -6,12 +6,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base.HomeBaseFragment;
-import modules.sections.HomeBannerSection;
-import modules.sections.SectionRecyclerAdapter;
-import modules.sections.bangumi.HomeBangumiUpdateSection;
-import modules.sections.live.HomeLiveItemSection;
-import modules.sections.recommand.RecHotSection;
-import modules.sections.recommand.RecTopicSection;
+import me.drakeet.multitype.Items;
+import me.drakeet.multitype.MultiTypeAdapter;
+import widget.decoration.BaseDecoration;
+import modules.multitypeuse.items.bangumi.BangumiHeadItem;
+import modules.multitypeuse.items.bangumi.BangumiHeadItemViewProvider;
+import modules.multitypeuse.items.bangumi.BangumiUpdate;
+import modules.multitypeuse.items.bangumi.BangumiUpdateViewProvider;
+import modules.multitypeuse.items.banner.BannerItem;
+import modules.multitypeuse.items.banner.BannerItemViewProvider;
+import modules.multitypeuse.items.base.ItemTypeValues;
+import modules.multitypeuse.items.extra.FootItem;
+import modules.multitypeuse.items.extra.FootItemViewProvider;
+import modules.multitypeuse.items.extra.HeadItem;
+import modules.multitypeuse.items.extra.HeadItemViewProvider;
+import modules.multitypeuse.items.live.LiveHeadItem;
+import modules.multitypeuse.items.live.LiveHeadItemViewProvider;
+import modules.multitypeuse.items.live.LiveTextItem;
+import modules.multitypeuse.items.live.LiveTextItemViewProvider;
+import modules.multitypeuse.items.recommand.RecBangumiFoot;
+import modules.multitypeuse.items.recommand.RecBangumiFootViewProvider;
+import modules.multitypeuse.items.recommand.RecHotitem;
+import modules.multitypeuse.items.recommand.RecHotitemViewProvider;
+import modules.multitypeuse.items.recommand.RecTopicItem;
+import modules.multitypeuse.items.recommand.RecTopicItemViewProvider;
 import network.entity.HomeRecBannerEntity;
 import network.entity.HomeRecContentEntity;
 import rx.android.schedulers.AndroidSchedulers;
@@ -20,16 +38,17 @@ import rx.schedulers.Schedulers;
 import utils.ApiGengder;
 import utils.DensityUtils;
 import widget.banner.BannerEntity;
-import widget.decoration.BangumiItemDecoration;
 
 /**
- * Created by ly on 2017/2/22.
+ * Created by ly on 2017/3/11.
  */
 
-public class HomeRecommandFragment  extends HomeBaseFragment{
+public class HomeRecommandFragment extends HomeBaseFragment {
+
 
     private GridLayoutManager manager;
-    private SectionRecyclerAdapter adapter;
+    private MultiTypeAdapter adapter;
+    private Items items = new Items();
 
     public static HomeRecommandFragment newInstance(){
         HomeRecommandFragment instance = new HomeRecommandFragment();
@@ -41,24 +60,40 @@ public class HomeRecommandFragment  extends HomeBaseFragment{
     @Override
     protected void initView() {
         super.initView();
-        adapter = new SectionRecyclerAdapter();
+        adapter = new MultiTypeAdapter();
         manager = new GridLayoutManager(getActivity(),2);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                switch (adapter.getSpanViewType(position)){
-                    case SectionRecyclerAdapter.VIEW_TYPE_HEADER:
-                    case SectionRecyclerAdapter.VIEW_TYPE_FOOTER:
-                    case  SectionRecyclerAdapter.VIEW_TYPE_ITEM_1:
+                switch (ItemTypeValues.getChildTypes(items.get(position))){
+                    case ItemTypeValues.VIEW_TYPE_HEADER:
+                    case ItemTypeValues.VIEW_TYPE_FOOTER:
+                    case ItemTypeValues.VIEW_TYPE_BANNER:
+                    case  ItemTypeValues.VIEW_TYPE_ITEM_1:
+                    case ItemTypeValues.VIEW_TYPE_ITEM_1_1:
                         return 2;
-                    case SectionRecyclerAdapter.VIEW_TYPE_ITEM_2:
+                    case ItemTypeValues.VIEW_TYPE_ITEM_2:
                         return 1;
                 }
                 return 0;
             }
         });
 
-        mrecyclerView.addItemDecoration(new BangumiItemDecoration(getActivity(), DensityUtils.Dp2px(getActivity(),10),4));
+        adapter.register(BannerItem.class,new BannerItemViewProvider());
+        adapter.register(RecHotitem.class,new RecHotitemViewProvider());
+        adapter.register(RecTopicItem.class,new RecTopicItemViewProvider());
+        adapter.register(LiveTextItem.class,new LiveTextItemViewProvider());
+        adapter.register(BangumiUpdate.class,new BangumiUpdateViewProvider());
+        adapter.register(FootItem.class,new FootItemViewProvider());
+        adapter.register(HeadItem.class,new HeadItemViewProvider());
+        adapter.register(BangumiHeadItem.class,new BangumiHeadItemViewProvider());
+        adapter.register(RecBangumiFoot.class,new RecBangumiFootViewProvider());
+        adapter.register(LiveHeadItem.class,new LiveHeadItemViewProvider());
+
+
+        adapter.setItems(items);
+
+        mrecyclerView.addItemDecoration(new BaseDecoration(DensityUtils.Dp2px(getActivity(),10),items));
         mrecyclerView.setLayoutManager(manager);
         mrecyclerView.setAdapter(adapter);
 
@@ -91,7 +126,8 @@ public class HomeRecommandFragment  extends HomeBaseFragment{
         for(HomeRecBannerEntity.DataBean dataBean:homeRecBannerEntity.getData()){
             datalist.add(new BannerEntity(dataBean.getImage()));
         }
-        adapter.addSections(new HomeBannerSection(datalist));
+
+        items.add(new BannerItem(datalist));
 
     }
 
@@ -100,32 +136,69 @@ public class HomeRecommandFragment  extends HomeBaseFragment{
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<HomeRecContentEntity>() {
-                    @Override
-                    public void call(HomeRecContentEntity homeRecContentEntity) {
-                        loadContentData(homeRecContentEntity);
-                        adapter.notifyDataSetChanged();
-                    }
-                },
+                               @Override
+                               public void call(HomeRecContentEntity homeRecContentEntity) {
+                                   loadContentData(homeRecContentEntity);
+                                   adapter.notifyDataSetChanged();
+                               }
+                           },
                         new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        refreshComplete();
+                            @Override
+                            public void call(Throwable throwable) {
+                                refreshComplete();
 
-                    }
-                });
+                            }
+                        });
     }
 
     private void loadContentData(HomeRecContentEntity homeRecContentEntity){
         for(HomeRecContentEntity.ResultBean bean : homeRecContentEntity.getResult()){
             if(bean.getType().equals("recommend") || bean.getType().equals("region")){
-                adapter.addSections(new RecHotSection(getActivity(),bean));
+                boolean isRecommend = bean.getType().equals("recommend");
+                if(isRecommend){
+                    items.add(new HeadItem(bean.getHead().getTitle(),HeadItem.TYPE_ORDER));
+                }else {
+                    items.add(new HeadItem(bean.getHead().getTitle(),HeadItem.TYPE_COMMON));
+                }
+
+                for(int i =0;i<4 ;i++){
+                    items.add(new RecHotitem(bean.getBody().get(i),i));
+                }
+
+                if(isRecommend){
+                    items.add(new FootItem(FootItem.TYPE_ON_CHANGE));
+                }else {
+                    items.add(new FootItem(FootItem.TYPE_ON_COMMON));
+                }
+
+
+
             }else if(bean.getType().equals("live")){
-                adapter.addSections(new HomeLiveItemSection(bean));
+
+                items.add(new LiveHeadItem(bean.getHead().getTitle(),bean.getHead().getCount()+""));
+                for(int i =0;i<4 ;i++){
+                    items.add(new LiveTextItem(bean.getBody().get(i),i));
+                }
+
+                items.add(new FootItem(FootItem.TYPE_ON_COMMON));
+
             }else if(bean.getType().equals("bangumi_2")){
-                adapter.addSections(new HomeBangumiUpdateSection(bean));
+
+                items.add(new BangumiHeadItem("",BangumiHeadItem.BANGUMI_TYPE_1,true));
+
+                for(int i =0;i<4;i++){
+                    items.add(new BangumiUpdate(bean.getBody().get(i),i));
+                }
+
+                items.add(new RecBangumiFoot());
+
             }else if(bean.getType().equals("weblink")){
-                adapter.addSections(new RecTopicSection(bean));
+                    items.add(new HeadItem("话题",HeadItem.TYPE_TOPIC));
+                    items.add(new RecTopicItem(bean.getBody().get(0).getCover()));
+
             }
+
+
         }
 
     }
@@ -134,3 +207,6 @@ public class HomeRecommandFragment  extends HomeBaseFragment{
     private String types[] = new String[]{"recommend","live","bangumi_2","weblink","region","activity"};
 
 }
+
+
+

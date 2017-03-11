@@ -3,8 +3,12 @@ package modules.video;
 import android.support.v7.widget.LinearLayoutManager;
 
 import base.HomeBaseFragment;
-import modules.sections.SectionRecyclerAdapter;
-import modules.sections.video.VideoAbstractSection;
+import me.drakeet.multitype.Items;
+import me.drakeet.multitype.MultiTypeAdapter;
+import modules.multitypeuse.items.video.VideoHeadItem;
+import modules.multitypeuse.items.video.VideoHeadItemViewProvider;
+import modules.multitypeuse.items.video.VideoMainItem;
+import modules.multitypeuse.items.video.VideoMainItemViewProvider;
 import network.entity.VideoDetailEntity;
 import utils.DensityUtils;
 import widget.decoration.VideoAbstractDecoration;
@@ -15,8 +19,9 @@ import widget.decoration.VideoAbstractDecoration;
 
 public class AbstractFragment extends HomeBaseFragment {
 
-    private SectionRecyclerAdapter adapter;
+    private MultiTypeAdapter adapter;
     private LinearLayoutManager manager;
+    private Items items = new Items();
 
     public static AbstractFragment newInstance(){
         AbstractFragment instance = new AbstractFragment();
@@ -30,13 +35,21 @@ public class AbstractFragment extends HomeBaseFragment {
         mswipeRefresh.setEnabled(false);
         manager = new LinearLayoutManager(getActivity());
         mrecyclerView.setLayoutManager(manager);
-        adapter = new SectionRecyclerAdapter();
-        mrecyclerView.addItemDecoration(new VideoAbstractDecoration(DensityUtils.Dp2px(getActivity(),10)));
+        adapter = new MultiTypeAdapter();
+
+        adapter.register(VideoHeadItem.class,new VideoHeadItemViewProvider());
+        adapter.register(VideoMainItem.class,new VideoMainItemViewProvider());
+        adapter.setItems(items);
+
+        mrecyclerView.addItemDecoration(new VideoAbstractDecoration(DensityUtils.Dp2px(getActivity(),10),items));
         mrecyclerView.setAdapter(adapter);
     }
 
     public void setData(VideoDetailEntity data){
-        adapter.addSections(new VideoAbstractSection(getActivity(),data));
+        items.add(new VideoHeadItem(data.getData()));
+        for(int i =0;i< data.getData().getRelates().size();i++){
+            items.add(new VideoMainItem(data.getData().getRelates().get(i),i));
+        }
         adapter.notifyDataSetChanged();
     }
 }

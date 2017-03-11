@@ -58,6 +58,7 @@ public class CommonHeaderView extends RelativeLayout{
         numberLive.setVisibility(View.GONE);
         enter.setVisibility(View.GONE);
         bangumiNum.setVisibility(View.GONE);
+        order.setVisibility(View.GONE);
     }
 
     public void onLive(){
@@ -68,12 +69,14 @@ public class CommonHeaderView extends RelativeLayout{
         bangumiNum.setVisibility(View.VISIBLE);
         enter.setVisibility(View.GONE);
         numberLive.setVisibility(View.GONE);
+        order.setVisibility(View.GONE);
     }
 
     public void onEnter(){
         bangumiNum.setVisibility(View.GONE);
         enter.setVisibility(View.VISIBLE);
         numberLive.setVisibility(View.GONE);
+        order.setVisibility(View.GONE);
     }
 
     public void onOrder(){
